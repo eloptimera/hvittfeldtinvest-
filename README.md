@@ -21,7 +21,15 @@ bun run dev
 | `/integritetspolicy` | GDPR-information                                            |
 
 Sajten är informativ, inte säljande: inga bokningsknappar, inget formulär och inga
-"vanliga frågor". Designen är monokrom (elfenben och kol) med Cormorant Garamond och DM Sans.
+"vanliga frågor". Rosa från porträttets vägg, Fraunces för rubriker och DM Sans för brödtext.
+Rubrikerna får ett rosa penseldrag som ritas fram när de scrollas in i bild.
+
+## Loggor
+
+Loggorna läses från `public/logos/`. Lägg filen där (helst SVG, annars PNG med transparent
+bakgrund) och sätt `logo: "/logos/<namn>.svg"` på bolaget i `src/lib/innehall.ts`. Utan
+loggfil visas bolagsnamnet som ordbild. Loggan blir klickbar bara om bolaget har `url`.
+I det rosa bandet visas loggorna vita, på uppdragssidan i egna färger.
 
 ## Var saker finns
 
@@ -40,6 +48,7 @@ utbildningar/certifieringar. Tomma e-post- och telefonfält visas som platshåll
 ## Bilder
 
 - `public/ankie-hvittfeldt.webp` (800 px) och `-480.webp` – porträttet på startsidan och profilen.
+- `public/hero-bred.webp` och `-1600.webp` – startsidans hero i full bredd (väggen förlängd åt sidorna).
 - `public/og.jpg` – delningsbild (1200 × 630).
 - `favicon.ico`, `favicon-96x96.png`, `apple-touch-icon.png`, `icon-*.png`, `logo.png` – monogrammet "H".
 - `public/logo/tab-chip.svg` – TAB Marketings logga i sidfoten, länkar till treatlymarketing.se.

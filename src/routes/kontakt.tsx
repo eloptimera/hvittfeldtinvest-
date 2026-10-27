@@ -39,7 +39,7 @@ function Kontakt() {
         intro="Du når mig på e-post eller telefon. Min fullständiga profil finns på LinkedIn."
       />
 
-      <Avsnitt etikett="Kontaktuppgifter" id="kontaktuppgifter">
+      <Avsnitt rubrik="Kontaktuppgifter" id="kontaktuppgifter">
         <dl className="max-w-2xl divide-y divide-line border-b border-line">
           <Rad etikett="E-post">
             {FORETAG.epost ? (
@@ -71,7 +71,7 @@ function Kontakt() {
         </dl>
       </Avsnitt>
 
-      <Avsnitt etikett="Bolagsuppgifter" id="bolagsuppgifter">
+      <Avsnitt rubrik="Bolagsuppgifter" id="bolagsuppgifter">
         <dl className="max-w-2xl divide-y divide-line border-b border-line">
           <Rad etikett="Bolag">{FORETAG.juridisktNamn}</Rad>
           <Rad etikett="Org.nr">{FORETAG.orgnr}</Rad>

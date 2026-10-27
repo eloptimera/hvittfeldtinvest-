@@ -31,12 +31,16 @@ function Tjanster() {
       />
       {TJANSTER.map((t) => (
         <div key={t.slug} id={t.slug} className="scroll-mt-8">
-          <Avsnitt etikett={t.titel} id={`${t.slug}-rubrik`}>
-            <p className="max-w-2xl font-display text-[1.6rem] leading-snug">{t.ingress}</p>
-            <h3 className="caps mt-8 !text-[0.7rem] text-muted-foreground">Uppdraget omfattar</h3>
+          <Avsnitt rubrik={t.titel} id={`${t.slug}-rubrik`}>
+            <p className="max-w-3xl font-display text-[1.55rem] leading-snug">{t.ingress}</p>
+            <h3 className="caps mt-8 !text-[0.7rem] text-rosa">Uppdraget omfattar</h3>
             <ul className="mt-3 max-w-2xl divide-y divide-line border-y border-line">
               {t.omfattar.map((o) => (
-                <li key={o} className="py-3">
+                <li key={o} className="flex gap-3 py-3">
+                  <span
+                    aria-hidden="true"
+                    className="mt-2.5 size-1.5 shrink-0 rounded-full bg-rosa-ljus"
+                  />
                   {o}
                 </li>
               ))}

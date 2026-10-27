@@ -24,7 +24,7 @@ function Integritetspolicy() {
     <>
       <PageHero etikett="Integritetspolicy" title="Personuppgifter" />
 
-      <Avsnitt etikett="Ansvarig" id="ansvarig">
+      <Avsnitt rubrik="Ansvarig" id="ansvarig">
         <Text>
           <p>
             {FORETAG.juridisktNamn}, org.nr {FORETAG.orgnr}, {adressRad()}, är
@@ -34,7 +34,7 @@ function Integritetspolicy() {
         </Text>
       </Avsnitt>
 
-      <Avsnitt etikett="Uppgifter" id="uppgifter">
+      <Avsnitt rubrik="Uppgifter" id="uppgifter">
         <Text>
           <p>
             Webbplatsen har inget formulär och samlar inte in några personuppgifter. Kontaktar du
@@ -49,7 +49,7 @@ function Integritetspolicy() {
         </Text>
       </Avsnitt>
 
-      <Avsnitt etikett="Cookies" id="cookies">
+      <Avsnitt rubrik="Cookies" id="cookies">
         <Text>
           <p>
             Besöksstatistiken (Vercel Web Analytics) sätter inga cookies och sparar inga uppgifter
@@ -79,7 +79,7 @@ function Integritetspolicy() {
         </Text>
       </Avsnitt>
 
-      <Avsnitt etikett="Dina rättigheter" id="rattigheter">
+      <Avsnitt rubrik="Dina rättigheter" id="rattigheter">
         <Text>
           <p>
             Du har rätt att få veta vilka uppgifter som finns om dig, få dem rättade eller raderade

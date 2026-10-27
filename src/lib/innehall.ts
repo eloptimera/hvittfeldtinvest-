@@ -137,56 +137,129 @@ export type Styrelseuppdrag = {
   bolag: string;
   roll: "Ordförande" | "Ledamot" | "Ordförande och ledamot";
   typ: Agartyp;
+  /**
+   * "nuvarande" = registrerat hos Bolagsverket i oktober 2026 (via allabolag.se).
+   * "tidigare" = belagt avslutat. "övrigt" = uppdrag genom åren där dagens status inte är belagd.
+   */
+  status: "nuvarande" | "tidigare" | "övrigt";
+  /** Bolagets hemsida. Utelämnad = loggan går inte att klicka på. */
+  url?: string;
+  /** Loggfil i public/logos/ (svg eller png). Utelämnad = bolagsnamnet visas som ordbild. */
+  logo?: string;
   /** Kort om bolaget eller uppdraget – bara det som går att belägga. */
   not?: string;
-  tidigare?: boolean;
 };
 
-/** Urval av nuvarande och tidigare uppdrag. Ordning: noterat/statligt/tillväxt först. */
+/** Nuvarande uppdrag först, sedan övriga. Hemsidorna är kontrollerade mot bolagens egna sidor
+ * eller register (oktober 2026); bolag utan bekräftad hemsida saknar `url` och går inte att klicka på. TODO(Hvittfeldt): stäm av listan med Ankie och lägg
+ * loggfilerna i public/logos/ – Bolagsverket visar 12 befattningar men bara 5 publikt. */
 export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   {
     bolag: "Everdrone AB",
+    url: "https://everdrone.com",
     roll: "Ordförande",
     typ: "Tillväxtbolag",
-    not: "Drönarleveranser för sjukvården. Ordförande sedan januari 2026, inför en accelererad expansion i Europa.",
+    status: "nuvarande",
+    not: "Drönarleveranser för sjukvården. Ordförande sedan januari 2026.",
+  },
+  {
+    bolag: "Healsafe Interiör AB",
+    url: "https://healsafeinterior.com",
+    roll: "Ordförande",
+    typ: "Ägarlett",
+    status: "nuvarande",
+    not: "Inredning som minskar risker inom psykiatri och kriminalvård.",
+  },
+  {
+    bolag: "Lightning Group AB",
+    url: "https://www.lightninggroup.se",
+    roll: "Ledamot",
+    typ: "Noterat",
+    status: "nuvarande",
+    not: "Belysningskoncern, noterad på Spotlight Stock Market (tidigare Vadsbo SwitchTech Group).",
+  },
+  {
+    bolag: "NetGroup Engineering AB",
+    roll: "Ordförande",
+    typ: "Ägarlett",
+    status: "nuvarande",
+    not: "Teknikkonsulter i Göteborg.",
+  },
+  {
+    bolag: "Skaraborgs Ortopedservice AB",
+    url: "https://ortopedservice.se",
+    roll: "Ordförande",
+    typ: "Ägarlett",
+    status: "nuvarande",
+    not: "Ortopedteknisk verksamhet i Skövde.",
   },
   {
     bolag: "Nilörngruppen AB",
+    url: "https://www.nilorn.com",
     roll: "Ledamot",
     typ: "Noterat",
-    not: "Etiketter och varumärkesprofilering för modebranschen. Invald 2022.",
+    status: "tidigare",
+    not: "Etiketter och varumärkesprofilering för modebranschen.",
   },
   {
     bolag: "Luftfartsverket",
+    url: "https://www.lfv.se",
     roll: "Ledamot",
     typ: "Statligt ägt",
+    status: "tidigare",
     not: "Statligt affärsverk för flygtrafiktjänst. Nio år i styrelsen.",
   },
   {
     bolag: "Green Cargo AB",
+    url: "https://www.greencargo.com",
     roll: "Ledamot",
     typ: "Statligt ägt",
+    status: "tidigare",
     not: "Statligt ägt godstransportbolag på järnväg.",
-    tidigare: true,
   },
-  { bolag: "Mymo AB", roll: "Ordförande", typ: "Tillväxtbolag" },
-  { bolag: "Brålanda Industri AB", roll: "Ordförande", typ: "Ägarlett" },
-  { bolag: "Berlex AB", roll: "Ordförande", typ: "Ägarlett" },
-  { bolag: "Netgroup Engineering AB", roll: "Ordförande", typ: "Ägarlett" },
-  { bolag: "VFG Utbildning AB", roll: "Ordförande", typ: "Ägarlett" },
-  { bolag: "Wikström Installationskonsult AB", roll: "Ordförande", typ: "Ägarlett" },
-  { bolag: "Intereast Transport AB", roll: "Ordförande och ledamot", typ: "Ägarlett" },
-  { bolag: "Vadsbo SwitchTech Group AB", roll: "Ledamot", typ: "Ägarlett" },
-  { bolag: "Skaraborgs Ortopedservice AB", roll: "Ledamot", typ: "Ägarlett" },
-  { bolag: "Modern Ekonomi AB", roll: "Ledamot", typ: "Ägarlett" },
-  { bolag: "AA Bolagen AB", roll: "Ledamot", typ: "Ägarlett" },
   {
     bolag: "Integra Engineering AB",
-    roll: "Ledamot",
+    roll: "Ordförande och ledamot",
     typ: "Ägarlett",
-    not: "Uppdraget avslutades när bolaget förvärvades av Projektengagemang 2018.",
-    tidigare: true,
+    status: "tidigare",
+    not: "Förvärvades av Projektengagemang 2018.",
   },
+  {
+    bolag: "Mymo AB",
+    url: "https://mymo.se",
+    roll: "Ordförande",
+    typ: "Tillväxtbolag",
+    status: "övrigt",
+  },
+  {
+    bolag: "VFG Utbildning AB",
+    url: "https://www.vfg.se",
+    roll: "Ordförande",
+    typ: "Ägarlett",
+    status: "övrigt",
+  },
+  { bolag: "Brålanda Industri AB", roll: "Ordförande", typ: "Ägarlett", status: "övrigt" },
+  {
+    bolag: "Berlex AB",
+    url: "https://www.berlex.se",
+    roll: "Ordförande",
+    typ: "Ägarlett",
+    status: "övrigt",
+  },
+  {
+    bolag: "Wikström Installationskonsult AB",
+    roll: "Ordförande",
+    typ: "Ägarlett",
+    status: "övrigt",
+  },
+  {
+    bolag: "Intereast Transport AB",
+    roll: "Ordförande och ledamot",
+    typ: "Ägarlett",
+    status: "övrigt",
+  },
+  { bolag: "Modern Ekonomi AB", roll: "Ledamot", typ: "Noterat", status: "övrigt" },
+  { bolag: "AA Bolagen AB", roll: "Ledamot", typ: "Ägarlett", status: "övrigt" },
 ];
 
 /** Områden där förändring drivits – beskrivna utifrån belagda uppdrag, inga påhittade siffror.
@@ -195,11 +268,11 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
 export const VARDESKAPANDE = [
   {
     titel: "Tillväxt och expansion",
-    text: "Ordförande i Everdrone, som efter nyval av styrelsen i januari 2026 tar nästa steg i Europa. Fokus på strategi, finansiering och en styrning som håller i högre tempo.",
+    text: "Ordförande i Everdrone sedan januari 2026, när en ny styrelse valdes inför bolagets fortsatta expansion i Europa.",
   },
   {
     titel: "Ägarskifte och försäljning",
-    text: "Styrelseledamot i Integra Engineering fram till förvärvet av Projektengagemang 2018 – ett exempel på styrelsearbete genom en strukturaffär.",
+    text: "Styrelsearbete i teknikkonsultbolaget Integra Engineering, som förvärvades av Projektengagemang 2018.",
   },
   {
     titel: "Samhällsviktig infrastruktur",

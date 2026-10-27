@@ -1,17 +1,19 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import "@fontsource-variable/cormorant-garamond/wght.css";
+@import "@fontsource-variable/fraunces/full.css";
+@import "@fontsource-variable/fraunces/full-italic.css";
 @import "@fontsource-variable/dm-sans/wght.css";
 
 @custom-variant dark (&:is(.dark *));
 
 /*
  * Designsystem – Hvittfeldt Invest
- * Lugn, redaktionell och informativ – inte säljande. Varm elfenbensyta, kolgrå text, inga
- * accentfärger, kort, skuggor eller dekorationer. Hierarkin bärs av typografin:
- * Cormorant Garamond för namn och rubriker, DM Sans för brödtext och små spärrade versaler.
- * Kontrast: text på yta 13:1, dämpad text på yta 5,2:1.
+ * Personlig men professionell: varm ljus yta, kolgrå text och rosa från porträttets vägg.
+ * Fraunces (med mjuka, lite egensinniga former) för namn och rubriker, DM Sans för brödtext.
+ * Rosa används för namnet, understrykningar som ritas fram när man scrollar, loggbandet
+ * och detaljer – aldrig för brödtext.
+ * Kontrast: text på yta 13:1, rosa på yta 5,1:1, vit på rosa 5,6:1.
  */
 
 @theme inline {
@@ -19,7 +21,7 @@
   --radius-md: 3px;
   --radius-lg: 4px;
   --radius-xl: 6px;
-  --font-display: "Cormorant Garamond Variable", "Cormorant Garamond", Garamond, Georgia, serif;
+  --font-display: "Fraunces Variable", Fraunces, Georgia, serif;
   --font-sans: "DM Sans Variable", system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -42,13 +44,19 @@
   --color-ring: var(--ring);
   --color-line: var(--line);
   --color-ink: var(--ink);
-  --color-brand: var(--ink);
+  --color-brand: var(--rosa);
+  --color-rosa: var(--rosa);
+  --color-rosa-ljus: var(--rosa-ljus);
+  --color-rosa-svag: var(--rosa-svag);
 }
 
 :root {
   color-scheme: light;
   --ink: #2b2e36;
-  --background: #f4f2ee;
+  --rosa: #b5357a;
+  --rosa-ljus: #d65a98;
+  --rosa-svag: #f6dfe9;
+  --background: #f7f3f1;
   --foreground: #2b2e36;
   --card: #f9f8f5;
   --card-foreground: #2b2e36;
@@ -94,9 +102,14 @@
   h3,
   .font-display {
     font-family: var(--font-display);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.005em;
+    font-weight: 450;
+    /* Mjuka hörn (SOFT) och lite egensinne (WONK) gör Fraunces varm i stället för stel. */
+    font-variation-settings:
+      "SOFT" 100,
+      "WONK" 1;
+    font-optical-sizing: auto;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
@@ -109,12 +122,12 @@
   }
 
   ::selection {
-    background-color: var(--ink);
+    background-color: var(--rosa);
     color: #ffffff;
   }
 
   :focus-visible {
-    outline: 2px solid var(--ink);
+    outline: 2px solid var(--rosa);
     outline-offset: 3px;
   }
 }
@@ -161,7 +174,7 @@
   background-color: var(--ink);
   color: #ffffff;
   &:hover {
-    background-color: #000000;
+    background-color: var(--rosa);
   }
 }
 
@@ -184,17 +197,67 @@
 
 @utility lank {
   text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-decoration-color: var(--line);
-  transition: text-decoration-color 200ms ease;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--rosa-ljus);
+  transition:
+    color 200ms ease,
+    text-decoration-color 200ms ease;
   &:hover {
-    text-decoration-color: currentColor;
+    color: var(--rosa);
+    text-decoration-color: var(--rosa);
   }
+}
+
+/* Penseldraget under rubriker: ritas fram när rubriken scrollas in i bild (se Rubrik.tsx). */
+.penseldrag path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 900ms cubic-bezier(0.65, 0, 0.35, 1) 150ms;
+}
+.penseldrag-in path {
+  stroke-dashoffset: 0;
+}
+
+/* Innehåll som tonas in underifrån när det kommer i bild. */
+.tona {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tona-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Loggbandet: oändlig rullning, pausar vid hovring och tangentbordsfokus. */
+@keyframes rulla {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.rullband {
+  animation: rulla 38s linear infinite;
+}
+.rullram:hover .rullband,
+.rullram:focus-within .rullband {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .penseldrag path {
+    stroke-dashoffset: 0;
+  }
+  .tona {
+    opacity: 1;
+    transform: none;
+  }
+  .rullband {
+    animation: none;
   }
   *,
   *::before,

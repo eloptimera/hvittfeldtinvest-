@@ -22,11 +22,11 @@ function llmsText(): string {
     "",
     ...KOMPETENSER.map((k) => `- ${k.titel}: ${k.text}`),
     "",
-    "## Styrelseuppdrag (urval, nuvarande och tidigare)",
+    "## Styrelseuppdrag",
     "",
     ...STYRELSEUPPDRAG.map(
       (u) =>
-        `- ${u.bolag} – ${u.roll.toLowerCase()} (${u.typ.toLowerCase()}${u.tidigare ? ", tidigare" : ""})${u.not ? `. ${u.not}` : ""}`,
+        `- ${u.bolag} – ${u.roll.toLowerCase()} (${u.status === "nuvarande" ? "nuvarande" : u.status === "tidigare" ? "tidigare" : "uppdrag genom åren"})${u.url ? ` – ${u.url}` : ""}${u.not ? `. ${u.not}` : ""}`,
     ),
     "",
     "## Operativ bakgrund",

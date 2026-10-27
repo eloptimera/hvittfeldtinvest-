@@ -11,7 +11,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import cormorantUrl from "@fontsource-variable/cormorant-garamond/files/cormorant-garamond-latin-wght-normal.woff2?url";
+import frauncesUrl from "@fontsource-variable/fraunces/files/fraunces-latin-full-normal.woff2?url";
 import dmSansUrl from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: FORETAG.namn },
       { name: "description", content: FORETAG.beskrivning },
       { property: "og:site_name", content: FORETAG.namn },
-      { name: "theme-color", content: "#f4f2ee" },
+      { name: "theme-color", content: "#f7f3f1" },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "sv_SE" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -98,7 +98,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       // Typsnitten förladdas så att texten inte byter typsnitt och knuffar layouten.
       {
         rel: "preload",
-        href: cormorantUrl,
+        href: frauncesUrl,
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous",

@@ -27,7 +27,7 @@ function OmMig() {
     <>
       <PageHero etikett="Om mig" title={FORETAG.person} intro={FORETAG.titel} />
 
-      <Avsnitt etikett="Bakgrund" id="bakgrund">
+      <Avsnitt rubrik="Bakgrund" id="bakgrund">
         <div className="max-w-2xl space-y-5 text-lg leading-relaxed">
           <p>
             Jag har arbetat professionellt med styrelsearbete i mer än 15 år – som ordförande och
@@ -45,7 +45,7 @@ function OmMig() {
         </div>
       </Avsnitt>
 
-      <Avsnitt etikett="Kompetensområden" id="kompetens">
+      <Avsnitt rubrik="Kompetensområden" id="kompetens">
         <dl className="grid max-w-3xl gap-x-12 gap-y-6 sm:grid-cols-2">
           {KOMPETENSER.map((k) => (
             <div key={k.titel}>
@@ -56,11 +56,11 @@ function OmMig() {
         </dl>
       </Avsnitt>
 
-      <Avsnitt etikett="Branscher" id="branscher">
+      <Avsnitt rubrik="Branscher" id="branscher">
         <p className="max-w-2xl text-lg leading-relaxed">{BRANSCHER.join(" · ")}</p>
       </Avsnitt>
 
-      <Avsnitt etikett="Utbildning" id="utbildning">
+      <Avsnitt rubrik="Utbildning" id="utbildning">
         <dl className="max-w-2xl space-y-5">
           {UTBILDNING.map((u) => (
             <div key={u.titel}>
@@ -71,7 +71,7 @@ function OmMig() {
         </dl>
       </Avsnitt>
 
-      <Avsnitt etikett="Nätverk" id="natverk">
+      <Avsnitt rubrik="Nätverk" id="natverk">
         <ul className="max-w-2xl space-y-3 text-lg leading-relaxed">
           {UPPDRAG_I_NARINGSLIVET.map((u) => (
             <li key={u}>{u}</li>
