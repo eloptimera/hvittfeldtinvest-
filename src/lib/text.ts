@@ -1,13 +1,12 @@
 // Långa svenska sammansättningar i stora rubriker bryts annars mitt i ordet utan bindestreck
-// ("Marknadsföringsb / ilder"). Mjuka bindestreck (­) syns bara om ordet faktiskt måste
-// delas, och då på rätt ställe: "Marknads- / föringsbilder".
+// ("Styrelseutvärderi / ng"). Mjuka bindestreck syns bara om ordet faktiskt måste
+// delas, och då på rätt ställe: "Styrelse- / utvärdering".
 const AVSTAVNING: readonly [RegExp, string][] = [
-  [/arknadsföringsbilder/g, "arknads­förings­bilder"],
-  [/arknadsföringsbyrå/g, "arknads­förings­byrå"],
-  [/emsideoptimering/g, "emside­optimering"],
-  [/emsideförbättringar/g, "emside­förbättringar"],
-  [/ökmotoroptimering/g, "ökmotor­optimering"],
-  [/öretagshemsida/g, "öretags­hemsida"],
+  [/tyrelseutvärdering/g, "tyrelse\u00adutvärdering"],
+  [/tyrelseuppdrag/g, "tyrelse\u00aduppdrag"],
+  [/tyrelseordförande/g, "tyrelse\u00adordförande"],
+  [/tyrelseledamot/g, "tyrelse\u00adledamot"],
+  [/garstyrning/g, "gar\u00adstyrning"],
 ];
 
 /** Lägger in mjuka bindestreck i kända långa ord. Bara för visning – inte i metadata. */

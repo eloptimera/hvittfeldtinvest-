@@ -7,12 +7,12 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // Sajtens publika adress, används i canonical-länkar, sitemap, delningsbilder och strukturerad
-// data. Byggen på Vercel pekar alltid på den riktiga domänen – även förhandsversioner och
-// vercel.app-adressen – så att Google bara indexerar en adress. SAJT_URL överstyr vid behov.
-// Vercel skickar treatlymarketing.se vidare till www – canonical måste peka på samma adress.
-const DOMAN = "https://www.treatlymarketing.se";
+// data. På Vercel används projektets produktionsdomän (VERCEL_PROJECT_PRODUCTION_URL) – även i
+// förhandsversioner – så att Google bara indexerar en adress. Kopplas en egen domän i Vercel
+// följer den med automatiskt. SAJT_URL överstyr vid behov (t.ex. https://www.hvittfeldtinvest.se).
+const produktion = process.env["VERCEL_PROJECT_PRODUCTION_URL"];
 const sajtUrl =
-  process.env["SAJT_URL"] ?? (process.env["VERCEL"] ? DOMAN : "http://localhost:3000");
+  process.env["SAJT_URL"] ?? (produktion ? `https://${produktion}` : "http://localhost:3000");
 
 export default defineConfig({
   tanstackStart: {

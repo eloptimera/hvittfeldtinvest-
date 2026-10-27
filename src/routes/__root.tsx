@@ -11,7 +11,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import bodoniUrl from "@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-wght-normal.woff2?url";
+import frauncesUrl from "@fontsource-variable/fraunces/files/fraunces-latin-full-normal.woff2?url";
 import dmSansUrl from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
@@ -25,7 +25,7 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-8xl text-brand">404</h1>
+        <h1 className="text-8xl">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Sidan finns inte</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           Sidan du letar efter finns inte eller har flyttats.
@@ -54,7 +54,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
           Sidan kunde inte laddas
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Något gick fel hos oss. Prova att ladda om sidan eller gå till startsidan.
+          Något gick fel. Prova att ladda om sidan eller gå till startsidan.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: FORETAG.namn },
       { name: "description", content: FORETAG.beskrivning },
       { property: "og:site_name", content: FORETAG.namn },
-      { name: "theme-color", content: "#ebeae6" },
+      { name: "theme-color", content: "#f7f3f1" },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "sv_SE" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -96,16 +96,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       // Typsnitten förladdas så att texten inte byter typsnitt och knuffar layouten.
-      { rel: "preload", href: bodoniUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      {
+        rel: "preload",
+        href: frauncesUrl,
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
       { rel: "preload", href: dmSansUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: appCss,
       },
-      // Ikoner: .ico med "Tab" i 16 (ritad pixel för pixel), 32 och 48 px – webbläsaren väljer
-      // storlek efter skärmen. Ingen SVG-favicon: den skulle vinna och bli suddig i 16 px.
-      // 96 px för Google (kräver en multipel av 48 px), apple-touch-icon för hemskärmen och
-      // manifestet för Android.
+      // Ikoner: monogrammet "H" i 16, 32 och 48 px (.ico), 96 px för Google (kräver en multipel
+      // av 48 px), apple-touch-icon för hemskärmen och manifestet för Android.
       { rel: "icon", href: "/favicon.ico", sizes: "16x16 32x32 48x48" },
       { rel: "icon", href: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },

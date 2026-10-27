@@ -2,20 +2,22 @@
 // Varje route anropar sidhuvud() i sin head() – då blir titel, beskrivning, canonical,
 // delningsbild och strukturerad data likadana överallt.
 import { absolut, FORETAG, SAJT_URL } from "@/lib/foretag";
-import type { Guide } from "@/lib/guider";
-import type { ProjektVideo } from "@/lib/projekt";
-import { PAKET, PRIS, type Fraga } from "@/lib/priser";
-import { TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
+import { KOMPETENSER, TJANSTER, type Tjanst } from "@/lib/innehall";
 
-/** Standardbilden när en länk delas. Sidor med egen bild skickar `bild` till sidhuvud(). */
+/** Standardbilden när en länk delas. */
 export const DELNINGSBILD = { src: "/og.jpg", bredd: 1200, hojd: 630 } as const;
 
-/** Guidens egen delningsbild (public/og/guider/<slug>.jpg), annars standardbilden. */
-export function guideBild(g: Guide): string {
-  return g.delningsbild ?? DELNINGSBILD.src;
-}
+/** Porträttet – används på sajten och i den strukturerade datan. */
+export const PORTRATT = {
+  src: "/ankie-hvittfeldt.webp",
+  litenSrc: "/ankie-hvittfeldt-480.webp",
+  bredd: 800,
+  hojd: 800,
+  alt: "Ankie Hvittfeldt, professionell styrelseledamot och ordförande, framför en plommonfärgad vägg",
+} as const;
 
 const FORETAG_ID = `${SAJT_URL}/#foretag`;
+const PERSON_ID = `${SAJT_URL}/#person`;
 
 type Schema = Record<string, unknown>;
 
@@ -32,15 +34,12 @@ export function sidhuvud({
   beskrivning,
   sokvag,
   schema = [],
-  bild,
 }: {
   /** Titel utan företagsnamn – det läggs till automatiskt. */
   titel: string;
   beskrivning: string;
   sokvag: string;
   schema?: readonly Schema[];
-  /** Egen delningsbild (1200 × 630) med alt-text. Utelämnad = standardbilden. */
-  bild?: { src: string; alt: string };
 }) {
   const fullTitel = titel === FORETAG.namn ? titel : `${titel} | ${FORETAG.namn}`;
   const url = absolut(sokvag);
@@ -51,12 +50,12 @@ export function sidhuvud({
       { property: "og:title", content: fullTitel },
       { property: "og:description", content: beskrivning },
       { property: "og:url", content: url },
-      { property: "og:image", content: absolut(bild?.src ?? DELNINGSBILD.src) },
+      { property: "og:image", content: absolut(DELNINGSBILD.src) },
       { property: "og:image:width", content: String(DELNINGSBILD.bredd) },
       { property: "og:image:height", content: String(DELNINGSBILD.hojd) },
       {
         property: "og:image:alt",
-        content: bild?.alt ?? `${FORETAG.namn} – bilder, SEO, GEO, Meta-annonser och hemsidor`,
+        content: `${FORETAG.person} – styrelseuppdrag, styrelseutvärdering och ägarstyrning`,
       },
     ],
     links: [{ rel: "canonical", href: url }],
@@ -64,16 +63,8 @@ export function sidhuvud({
   };
 }
 
-/** Företaget och webbplatsen – ligger på alla sidor via roten. */
+/** Bolaget, konsulten och webbplatsen – ligger på alla sidor via roten. */
 export function grundSchema(): Schema {
-  const adress: Schema = {
-    "@type": "PostalAddress",
-    addressLocality: FORETAG.ort,
-    addressCountry: "SE",
-  };
-  if (FORETAG.gata) adress["streetAddress"] = FORETAG.gata;
-  if (FORETAG.postnummer) adress["postalCode"] = FORETAG.postnummer;
-
   const foretag: Schema = {
     "@type": "ProfessionalService",
     "@id": FORETAG_ID,
@@ -83,26 +74,49 @@ export function grundSchema(): Schema {
     url: absolut("/"),
     logo: absolut("/logo.png"),
     image: absolut(DELNINGSBILD.src),
-    address: adress,
-    areaServed: { "@type": "Country", name: "Sverige" },
-    priceRange: `${PRIS.studioS}–${PRIS.extern} SEK`,
+    founder: { "@id": PERSON_ID },
+    areaServed: [
+      { "@type": "AdministrativeArea", name: FORETAG.region },
+      { "@type": "Country", name: "Sverige" },
+    ],
     knowsAbout: TJANSTER.map((t) => t.titel),
+    sameAs: [FORETAG.linkedin],
   };
+  if (FORETAG.gata) {
+    foretag["address"] = {
+      "@type": "PostalAddress",
+      streetAddress: FORETAG.gata,
+      postalCode: FORETAG.postnummer,
+      addressLocality: FORETAG.ort,
+      addressCountry: "SE",
+    };
+  }
   if (FORETAG.telefon) foretag["telephone"] = FORETAG.telefonLank;
   if (FORETAG.epost) foretag["email"] = FORETAG.epost;
   if (FORETAG.orgnr) foretag["taxID"] = FORETAG.orgnr;
-  if (FORETAG.momsnr) foretag["vatID"] = FORETAG.momsnr;
+
+  const person: Schema = {
+    "@type": "Person",
+    "@id": PERSON_ID,
+    name: FORETAG.person,
+    alternateName: FORETAG.personFullstandigt,
+    jobTitle: FORETAG.titel,
+    image: absolut(PORTRATT.src),
+    url: absolut("/om-mig"),
+    sameAs: [FORETAG.linkedin],
+    worksFor: { "@id": FORETAG_ID },
+    knowsAbout: KOMPETENSER.map((k) => k.titel),
+  };
 
   return {
     "@context": "https://schema.org",
     "@graph": [
       foretag,
+      person,
       {
         "@type": "WebSite",
         "@id": `${SAJT_URL}/#webbplats`,
-        // Namnet Google visar som sajtnamn i sökresultaten.
         name: FORETAG.namn,
-        alternateName: FORETAG.kortnamn,
         url: absolut("/"),
         inLanguage: "sv-SE",
         publisher: { "@id": FORETAG_ID },
@@ -111,73 +125,17 @@ export function grundSchema(): Schema {
   };
 }
 
-/**
- * Tjänsten som strukturerad data. `sida` används när en landningssida beskriver en del av
- * tjänsten (t.ex. /seo-byra för SEO) – då med sidans eget namn, text och adress.
- */
-export function tjanstSchema(
-  t: Tjanst,
-  sida?: {
-    namn: string;
-    beskrivning: string;
-    sokvag: string;
-    /** Orter/regioner tjänsten riktar sig till på just den sidan. Utelämnas: hela Sverige. */
-    omraden?: readonly { typ: "City" | "AdministrativeArea"; namn: string }[];
-  },
-): Schema {
+/** Tjänsten som strukturerad data. */
+export function tjanstSchema(t: Tjanst): Schema {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: sida?.namn ?? t.titel,
+    name: t.titel,
     serviceType: t.titel,
-    description: sida?.beskrivning ?? t.seoBeskrivning,
-    url: absolut(sida?.sokvag ?? tjanstSokvag(t)),
-    ...(t.galleri ? { image: t.galleri.map((b) => absolut(b.src)) } : {}),
+    description: t.ingress,
+    url: absolut(`/tjanster#${t.slug}`),
     provider: { "@id": FORETAG_ID },
-    areaServed: sida?.omraden
-      ? sida.omraden.map((o) => ({ "@type": o.typ, name: o.namn }))
-      : { "@type": "Country", name: "Sverige" },
-    offers: {
-      "@type": "Offer",
-      description: t.pris.avser,
-      priceCurrency: "SEK",
-      priceSpecification: {
-        "@type": t.pris.manad ? "UnitPriceSpecification" : "PriceSpecification",
-        priceCurrency: "SEK",
-        valueAddedTaxIncluded: false,
-        ...(t.pris.manad ? { unitText: "månad" } : {}),
-        ...(t.pris.fran ? { minPrice: t.pris.belopp } : { price: t.pris.belopp }),
-      },
-    },
-  };
-}
-
-/** VideoObject för en visningsfilm på sidan. Ger ingen videominiatyr i Google (filmen är inte
- * sidans huvudinnehåll), men beskriver filmen för sökmotorer och AI-tjänster. */
-export function videoSchema(v: ProjektVideo): Schema {
-  return {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    name: v.namn,
-    description: v.beskrivning,
-    thumbnailUrl: absolut(`/video/${v.fil}.webp`),
-    contentUrl: absolut(`/video/${v.fil}.mp4`),
-    uploadDate: v.publicerad,
-    duration: v.langd,
-    inLanguage: "sv-SE",
-    publisher: { "@id": FORETAG_ID },
-  };
-}
-
-export function faqSchema(fragor: readonly Fraga[]): Schema {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: fragor.map((f) => ({
-      "@type": "Question",
-      name: f.fraga,
-      acceptedAnswer: { "@type": "Answer", text: f.svar },
-    })),
+    areaServed: { "@type": "Country", name: "Sverige" },
   };
 }
 
@@ -194,45 +152,12 @@ export function brodsmulor(steg: readonly { namn: string; sokvag: string }[]): S
   };
 }
 
-/** Alla månadsnivåer som erbjudanden – används på prissidan. */
-export function paketSchema(): Schema {
+/** Profilsidan som ProfilePage – kopplar sidan till personen. */
+export function profilSchema(): Schema {
   return {
     "@context": "https://schema.org",
-    "@type": "OfferCatalog",
-    name: "Löpande tjänster",
-    url: absolut("/priser"),
-    itemListElement: PAKET.map((p) => ({
-      "@type": "Offer",
-      name: p.namn,
-      description: p.ingar.join(", "),
-      seller: { "@id": FORETAG_ID },
-      priceCurrency: "SEK",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: p.belopp,
-        priceCurrency: "SEK",
-        unitText: "månad",
-        valueAddedTaxIncluded: false,
-      },
-    })),
-  };
-}
-
-/** En guide som artikel – visar Google och AI-tjänster vem som skrivit den och när. */
-export function artikelSchema(g: Guide): Schema {
-  const url = absolut(`/guider/${g.slug}`);
-  return {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: g.rubrik.text,
-    description: g.seoBeskrivning,
-    url,
-    mainEntityOfPage: url,
-    datePublished: g.publicerad,
-    dateModified: g.uppdaterad,
-    inLanguage: "sv-SE",
-    image: absolut(guideBild(g)),
-    author: { "@id": FORETAG_ID },
-    publisher: { "@id": FORETAG_ID },
+    "@type": "ProfilePage",
+    url: absolut("/om-mig"),
+    mainEntity: { "@id": PERSON_ID },
   };
 }

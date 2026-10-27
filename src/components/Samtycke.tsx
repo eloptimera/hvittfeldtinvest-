@@ -95,7 +95,7 @@ function Banner() {
                 type="checkbox"
                 checked={val[k]}
                 onChange={(e) => setVal({ ...val, [k]: e.target.checked })}
-                className="mt-0.5 size-5 shrink-0 accent-sun"
+                className="mt-0.5 size-5 shrink-0 accent-brand"
               />
               <span>
                 <span className="block font-bold">{KATEGORIER[k].namn}</span>

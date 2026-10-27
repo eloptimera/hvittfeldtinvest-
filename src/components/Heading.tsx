@@ -1,74 +1,83 @@
-import type { ElementType, ReactNode } from "react";
-import { Blob } from "@/components/Brand";
-import { avstava } from "@/lib/text";
+import type { ReactNode } from "react";
+import { useSynlig } from "@/components/Synlig";
 
-export function Heading({
-  as: Tag = "h2",
-  className = "",
-  children,
-}: {
-  as?: ElementType;
-  className?: string;
-  children: ReactNode;
-}) {
-  return <Tag className={className}>{children}</Tag>;
-}
-
-/** Markerat ord – gul understrykning (en riktig text-underline). */
-export function Mark({ children, nowrap = false }: { children: ReactNode; nowrap?: boolean }) {
+/**
+ * Text med ett rosa penseldrag under som ritas fram när det scrollas in i bild.
+ * Draget är en SVG-bana med pathLength=1, så animationen fungerar oavsett textens bredd.
+ */
+export function Understruken({ children }: { children: ReactNode }) {
+  const [ref, synlig] = useSynlig<HTMLSpanElement>();
   return (
-    <span
-      className={`italic underline decoration-sun decoration-[0.07em] underline-offset-[0.1em] [text-decoration-skip-ink:none] ${
-        nowrap ? "whitespace-nowrap" : ""
-      }`}
-    >
-      {children}
+    <span ref={ref} className="relative inline-block">
+      <span className="relative z-10">{children}</span>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 300 20"
+        preserveAspectRatio="none"
+        className={`penseldrag pointer-events-none absolute -bottom-[0.12em] left-[-2%] z-0 h-[0.32em] w-[104%] text-rosa-ljus ${
+          synlig ? "penseldrag-in" : ""
+        }`}
+      >
+        <path
+          d="M3 13 C 60 6, 120 5, 180 8 S 270 12, 297 7"
+          pathLength={1}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="7"
+          strokeLinecap="round"
+        />
+      </svg>
     </span>
   );
 }
 
-/** Sidhuvud för undersidor: pappersyta, serif-rubrik, kornig blob och tunna linjer. */
+/** Sidhuvud för undersidor: liten spärrad rad, stor rubrik med penseldrag och en kort ingress. */
 export function PageHero({
-  eyebrow,
+  etikett,
   title,
   intro,
-  children,
 }: {
-  eyebrow: string;
-  title: ReactNode;
+  etikett: string;
+  title: string;
   intro?: ReactNode;
-  children?: ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden">
-      <Blob className="absolute top-1/2 -right-16 -z-10 hidden w-[36rem] -translate-y-1/2 opacity-90 lg:block" />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 right-[5%] -z-10 hidden aspect-square w-[30rem] -translate-y-1/2 rounded-full border border-ink/70 lg:block"
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
-      />
-      <div className="mx-auto max-w-[88rem] px-6 py-16 sm:px-10 sm:py-24 lg:py-28">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-6 max-w-3xl text-[clamp(2.5rem,6.4vw,5.5rem)] leading-[1.02]">{title}</h1>
-        {intro && <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80">{intro}</p>}
-        {children && <div className="mt-9 flex flex-wrap gap-3">{children}</div>}
-      </div>
+    <section className="container-page pt-32 pb-2 text-center sm:pt-44">
+      <p className="caps text-rosa">{etikett}</p>
+      <h1 className="mx-auto mt-6 max-w-4xl text-[clamp(2.6rem,7vw,5.25rem)]">
+        <Understruken>{title}</Understruken>
+      </h1>
+      {intro && (
+        <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+          {intro}
+        </p>
+      )}
     </section>
   );
 }
 
-/** Rubriktext där en del (`markera`) får gul understrykning. */
-export function Markerad({ text, markera }: { text: string; markera: string }) {
-  const i = text.indexOf(markera);
-  if (i < 0) return <>{avstava(text)}</>;
+/** Ett avsnitt med rubrik (penseldrag när den scrollas fram) och innehåll under. */
+export function Avsnitt({
+  rubrik,
+  id,
+  children,
+  hoger,
+}: {
+  rubrik: string;
+  id?: string;
+  children: ReactNode;
+  /** Valfri länk eller liknande till höger om rubriken. */
+  hoger?: ReactNode;
+}) {
   return (
-    <>
-      {avstava(text.slice(0, i))}
-      <Mark>{avstava(markera)}</Mark>
-      {avstava(text.slice(i + markera.length))}
-    </>
+    <section aria-labelledby={id} className="container-page mt-24 sm:mt-32">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <h2 id={id} className="text-[clamp(2.1rem,4.5vw,3.25rem)]">
+          <Understruken>{rubrik}</Understruken>
+        </h2>
+        {hoger}
+      </div>
+      <div className="mt-10 sm:mt-12">{children}</div>
+    </section>
   );
 }

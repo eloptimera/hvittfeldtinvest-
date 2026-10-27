@@ -1,6 +1,6 @@
 {
-  "name": "TAB Marketing",
-  "short_name": "TAB",
+  "name": "Hvittfeldt Invest",
+  "short_name": "Hvittfeldt",
   "icons": [
     {
       "src": "/icon-192.png",
@@ -21,8 +21,8 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ebeae6",
-  "background_color": "#ebeae6",
+  "theme_color": "#f5f2ec",
+  "background_color": "#f5f2ec",
   "display": "standalone",
   "start_url": "/"
 }

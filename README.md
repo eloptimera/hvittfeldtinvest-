@@ -1,105 +1,69 @@
-# TAB Marketing – webbplats
+# Hvittfeldt Invest – webbplats
 
-TAB Marketing drivs av Treatly AB. Byggd med TanStack Start, React och Tailwind. Körs på Vercel.
+Webbplats för Ankie Hvittfeldt / Hvittfeldt Invest AB: styrelseuppdrag, styrelseutvärdering och
+rådgivning kring ägarstyrning. Byggd och administrerad av
+[TAB Marketing](https://www.treatlymarketing.se) med TanStack Start, React och Tailwind. Körs på Vercel.
 
 ```sh
 bun install
 bun run dev
 ```
 
+## Sidor
+
+| Sökväg               | Innehåll                                                    |
+| -------------------- | ----------------------------------------------------------- |
+| `/`                  | Porträtt, namn, roller, kort om, tjänster, urval av uppdrag |
+| `/tjanster`          | De tre tjänsterna med ankare (`#styrelseuppdrag` m.fl.)     |
+| `/om-mig`            | Bakgrund, kompetensområden, branscher, utbildning, nätverk  |
+| `/erfarenhet`        | Styrelseuppdrag per ägarform, exempel, operativ bakgrund    |
+| `/kontakt`           | Kontakt- och bolagsuppgifter (inget formulär)               |
+| `/integritetspolicy` | GDPR-information                                            |
+
+Sajten är informativ, inte säljande: inga bokningsknappar, inget formulär och inga
+"vanliga frågor". Rosa från porträttets vägg, Fraunces för rubriker och DM Sans för brödtext.
+Rubrikerna får ett rosa penseldrag som ritas fram när de scrollas in i bild.
+
+## Loggor
+
+Loggorna ligger som transparenta WebP-filer (max 400 px, cirka 8 kB var) i `public/logos/` och kopplas till bolaget med
+`logo` och `proportion` (bredd/höjd) i `src/lib/innehall.ts`. Proportionen används för att ge
+alla loggor samma visuella tyngd. Utan loggfil visas bolagsnamnet som ordbild. Loggan blir
+klickbar bara om bolaget har `url`. I loggbandet är de gråtonade tills man hovrar, på
+uppdragssidan visas de i färg.
+
 ## Var saker finns
 
-All text som återkommer på flera ställen har en enda källa:
+| Fil                          | Innehåll                                                        |
+| ---------------------------- | --------------------------------------------------------------- |
+| `src/lib/foretag.ts`         | Namn, org.nr, adress, kontaktuppgifter, LinkedIn och TAB:s länk |
+| `src/lib/innehall.ts`        | Tjänster, kompetenser, styrelseuppdrag och meriter              |
+| `src/lib/seo.ts`             | Metadata, porträttet och strukturerad data (schema.org)         |
+| `src/components/Heading.tsx` | `PageHero` och `Avsnitt` – sidhuvud och den tvåspaltiga rytmen  |
+| `src/styles.css`             | Färger och typsnitt                                             |
 
-| Fil                   | Innehåll                                                                   |
-| --------------------- | -------------------------------------------------------------------------- |
-| `src/lib/foretag.ts`  | Företagsuppgifter (namn, ort, kontakt, org.nr)                             |
-| `src/lib/tjanster.ts` | De sex tjänsterna – startsida, `/tjanster`, tjänstesidor, sidfot, formulär |
-| `src/lib/priser.ts`   | Alla priser och prisfrågor                                                 |
-| `src/lib/projekt.ts`  | Tidigare projekt och marknadsföringsbilder                                 |
-| `src/lib/guider.ts`   | Guiderna på `/guider` – text, datum och vanliga frågor                     |
-| `src/lib/seo.ts`      | Metadata och strukturerad data (schema.org) för varje sida                 |
-| `src/lib/sidor.ts`    | Sidlistan för `sitemap.xml` och `llms.txt`                                 |
+Sök efter `TODO(Hvittfeldt)` för det som ska fyllas i eller stämmas av:
+vilka styrelseuppdrag som är aktuella, titlar och årtal i de operativa rollerna och
+utbildningar/certifieringar.
 
-Ändrar du ett pris eller en tjänst uppdateras sidorna, den strukturerade datan,
-`sitemap.xml` och `llms.txt` automatiskt.
+## Bilder
 
-## SEO och GEO
+- `public/ankie-hvittfeldt.webp` (800 px) och `-480.webp` – porträttet på startsidan och profilen.
+- `public/hero-bred.webp` och `-1600.webp` – startsidans hero i full bredd (väggen förlängd åt sidorna).
+- `public/og.jpg` – delningsbild (1200 × 630).
+- `favicon.ico`, `favicon-96x96.png`, `apple-touch-icon.png`, `icon-*.png`, `logo.png` – monogrammet "H".
+- `public/logo/tab-chip.svg` – TAB Marketings logga i sidfoten, länkar till treatlymarketing.se.
 
-- Varje sida sätter titel, beskrivning, canonical, delningsbild och JSON-LD via `sidhuvud()`.
-- `/sitemap.xml`, `/robots.txt` och `/llms.txt` genereras av servern från samma data.
-- Sajtens adress är `https://www.treatlymarketing.se` (konstanten `DOMAN` i `vite.config.ts`).
-  Domänen utan www skickas vidare dit i Vercel. Byter ni håll i Vercel måste konstanten följa med.
-  Alla byggen på Vercel använder den i canonical, sitemap och schema, så vercel.app-adressen
-  räknas som en kopia. `SAJT_URL` överstyr vid behov.
-- `robots.txt` släpper in alla sökmotorer och AI-tjänsternas robotar med namn.
-- Guiderna får `Article`-schema och `lastmod` i sitemap från fältet `uppdaterad`.
-  Uppdatera datumet när du ändrar en guide.
+## Domän
 
-## Logga, ikoner och delningsbilder
+Sajtens adress (canonical, sitemap, schema) är projektets produktionsdomän i Vercel och följer
+med när en egen domän kopplas. Vill ni låsa den, sätt `SAJT_URL` i Vercel, t.ex.
+`https://www.hvittfeldtinvest.se`. Lägg sedan till domänen i Google Search Console och skicka in
+`/sitemap.xml`.
 
-Allt ligger i `public/` och är byggt från samma källa (ordmärket "Tab" och färgkortet).
+## Statistik och cookies
 
-| Fil                                         | Används till                                                |
-| ------------------------------------------- | ----------------------------------------------------------- |
-| `logo/tab-chip.svg`                         | Kortet i sidhuvud och sidfot (`Logo` i `Brand.tsx`)         |
-| `favicon.ico`                               | Webbläsarflik: "Tab" i 16 (pixelritad), 32 och 48 px        |
-| `favicon-96x96.png`                         | Google-sök (kräver en multipel av 48 px)                    |
-| `apple-touch-icon.png`                      | iPhone/iPad hemskärm (180 px, utan transparens)             |
-| `icon-192.png`, `icon-512.png`, `-maskable` | Android/PWA via `site.webmanifest`                          |
-| `logo.png`                                  | Organisationens logga i den strukturerade datan             |
-| `og.jpg`                                    | Standardbild när en sida delas (1200 × 630)                 |
-| `og/guider/<slug>.jpg`                      | Guidens egen delningsbild, satt med `delningsbild` i guiden |
-
-Byter ni favicon igen: be Google indexera om startsidan i Search Console, annars dröjer det
-innan sökresultaten visar den nya.
-
-### Koppla domänen (Strato → Vercel)
-
-1. Vercel → projektet → Settings → Domains: lägg till `treatlymarketing.se` och
-   `www.treatlymarketing.se`, och låt domänen utan www omdirigera till www.
-2. Strato → DNS för domänen: lägg in exakt de A- och CNAME-poster som Vercel visar.
-   **Behåll namnservrarna hos Strato och rör inte MX-posterna** – annars slutar mejlen
-   till edvin@treatlymarketing.se att fungera.
-3. Vänta tills Vercel visar Valid Configuration.
-
-### Google Search Console och Bing Webmaster Tools
-
-1. Lägg till egendomen i [Google Search Console](https://search.google.com/search-console)
-   som typen **Domän** (`treatlymarketing.se`) och verifiera med TXT-posten Google visar,
-   i Stratos DNS. Den täcker www, utan www, http och https på en gång.
-2. Skicka in `https://treatlymarketing.se/sitemap.xml` under Webbplatskartor.
-3. I [Bing Webmaster Tools](https://www.bing.com/webmasters) väljer du import från
-   Google Search Console.
-
-Går DNS inte att använda finns reservvägen URL-prefix med HTML-tagg: sätt koden som
-`GOOGLE_SITE_VERIFICATION` (och `BING_SITE_VERIFICATION` för Bing) i Vercel och deploya om.
-
-## Statistik, cookies och samtycke
-
-- **Vercel Web Analytics** räknar besök utan cookies, så ingen cookiebanner behövs för den.
-  Slå på under Analytics i Vercel.
-- **Klickhändelser** (`src/lib/sparning.ts`): `boka_klick`, `bokning_skickad`,
-  `tjanst_oppnad`, `projekt_klick` och `mejl_klick`. De syns i Vercel först på **Pro-planen**;
-  på Hobby ignoreras de. Skicka aldrig namn, e-post eller fritext som händelsedata.
-- **Spårverktyg som kräver samtycke** slås på med miljövariabler i Vercel:
-  - `META_PIXEL_ID` – Meta-pixeln (marknadsföring). Skickar `Lead` när en bokning skickas.
-  - `CLARITY_ID` – Microsoft Clarity (statistik: heatmaps och inspelningar).
-
-  Är någon satt visas cookiebannern (`src/components/Samtycke.tsx`), länken
-  Cookieinställningar i sidfoten och verktygen i integritetspolicyn. Inget laddas före ett ja.
-  Lägger ni till ett verktyg frågar bannern alla besökare igen. Är ingen satt finns ingen banner.
-
-## Bokningsformuläret
-
-Formuläret på `/kontakt` skickar mejl via [Resend](https://resend.com). Sätt i Vercel
-(Settings → Environment Variables):
-
-- `RESEND_API_KEY` – API-nyckel från Resend
-- `KONTAKT_TILL` – adressen som tar emot bokningarna
-- `KONTAKT_FRAN` (valfri) – avsändare, t.ex. `TAB Marketing <bokning@treatlymarketing.se>`,
-  när domänen är verifierad i Resend (Resend visar DNS-posterna som läggs in hos Strato)
-
-Utan nyckeln visar formuläret ett felmeddelande i stället för att låtsas att det skickats.
-
-Sök efter `TODO(TAB)` för det som ska fyllas i.
+- **Vercel Web Analytics** räknar besök utan cookies – slå på under Analytics i Vercel.
+- Klickhändelse (`src/lib/sparning.ts`): `mejl_klick`.
+- `META_PIXEL_ID` och `CLARITY_ID` slår på verktyg som kräver samtycke; då visas cookiebannern.
+  Är ingen satt finns ingen banner.
