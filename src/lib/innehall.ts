@@ -217,6 +217,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "GLC",
+    url: "https://glc.se",
     logo: "/logos/glc.webp",
     proportion: 3.25,
     roll: "Ledamot",

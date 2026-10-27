@@ -39,10 +39,9 @@ export const FORETAG: {
   orgnr: "556835-8294",
   gata: "Svenslyckegatan 16",
   postnummer: "416 56",
-  // TODO(Hvittfeldt): fyll i telefon och e-post.
-  telefon: "",
-  telefonLank: "",
-  epost: "",
+  telefon: "072-233 02 03",
+  telefonLank: "+46722330203",
+  epost: "ankie@hvittfeldtinvest.se",
   linkedin: "https://www.linkedin.com/in/ankiehvittfeldt/",
 };
 
