@@ -135,7 +135,8 @@ export type Agartyp = "Ägarlett" | "Tillväxtbolag" | "Noterat" | "Statligt äg
 
 export type Styrelseuppdrag = {
   bolag: string;
-  roll: "Ordförande" | "Ledamot" | "Ordförande och ledamot";
+  /** Rollen som visas i boxen, t.ex. "Ordförande", "Ledamot" eller "Samtalsledare". */
+  roll: string;
   typ: Agartyp;
   /**
    * "nuvarande" = enligt Bolagsverket (oktober 2026) och kunden. "tidigare" = övriga uppdrag
@@ -224,6 +225,25 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
     typ: "Ägarlett",
     status: "nuvarande",
     not: "Göteborgs Lastbilcentral, ekonomisk förening.",
+  },
+  {
+    bolag: "Styrelsepoolen",
+    url: "https://www.styrelsepoolen.se",
+    logo: "/logos/styrelsepoolen.webp",
+    proportion: 1.99,
+    roll: "Ansvarig Styrelsepoolen Väst och ledamot",
+    typ: "Ägarlett",
+    status: "nuvarande",
+  },
+  {
+    bolag: "Västsvenska Handelskammaren",
+    url: "https://www.vastsvenskahandelskammaren.se/chefsnatverk-samtalsledare/ankie-hvittfeldt/",
+    logo: "/logos/vastsvenska-handelskammaren.webp",
+    proportion: 0.99,
+    roll: "Samtalsledare",
+    typ: "Ägarlett",
+    status: "nuvarande",
+    not: "Samtalsledare i chefs- och vd-nätverken i Göteborg och Trollhättan.",
   },
   {
     bolag: "Nilörngruppen AB",
@@ -332,6 +352,15 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
     proportion: 1.0,
     url: "https://www.aabolagen.se",
     roll: "Ledamot",
+    typ: "Ägarlett",
+    status: "tidigare",
+  },
+  {
+    bolag: "GOKAP Invest",
+    url: "https://www.gokap.se",
+    logo: "/logos/gokap.webp",
+    proportion: 5.8,
+    roll: "Medgrundare",
     typ: "Ägarlett",
     status: "tidigare",
   },
