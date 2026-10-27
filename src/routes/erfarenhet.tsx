@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { Avsnitt, PageHero } from "@/components/Heading";
 import { Logga } from "@/components/Logga";
+import { Lutning } from "@/components/Lutning";
 import { Tona } from "@/components/Synlig";
 import { OPERATIVT, STYRELSEUPPDRAG, VARDESKAPANDE, type Styrelseuppdrag } from "@/lib/innehall";
 import { brodsmulor, sidhuvud } from "@/lib/seo";
@@ -29,32 +30,41 @@ const GRUPPER: readonly { status: Styrelseuppdrag["status"]; rubrik: string; id:
   { status: "övrigt", rubrik: "Fler uppdrag genom åren", id: "ovriga" },
 ];
 
-/** En ruta per bolag: loggan (klickbar om bolaget har en hemsida) och rollen under. */
+/**
+ * En box per bolag i samma svarta stil som sidfoten: loggan på en ljus platta som lyfter i
+ * djupled när boxen lutar, rollen under. Hela boxen är klickbar om bolaget har en hemsida.
+ */
 function Ruta({ u }: { u: Styrelseuppdrag }) {
-  return (
-    <div
-      className={`group relative flex h-full flex-col rounded-lg border border-line bg-card transition-[transform,border-color,box-shadow] duration-300 ${
-        u.url
-          ? "hover:-translate-y-1 hover:border-rosa-ljus hover:shadow-[0_18px_40px_-24px_rgb(181_53_122/0.45)]"
-          : ""
-      }`}
-    >
-      {/* Länkens ::after täcker hela rutan, så att hela rutan går att klicka på. */}
+  const innehall = (
+    <>
       <Logga
         uppdrag={u}
         variant="farg"
-        className="h-36 px-6 after:absolute after:inset-0 after:content-['']"
+        lank={false}
+        className="h-32 rounded-xl bg-white px-5 shadow-[0_10px_24px_-14px_rgb(0_0_0/0.5)] [transform:translateZ(28px)]"
       />
-      {u.url && (
-        <ArrowUpRight
-          aria-hidden="true"
-          className="absolute top-3 right-3 size-4 text-rosa opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        />
+      <span className="flex items-center justify-between gap-2 px-2 pt-3 pb-1 [transform:translateZ(16px)]">
+        <span className="text-sm text-white/75">{u.roll}</span>
+        {u.url && <ArrowUpRight aria-hidden="true" className="size-4 shrink-0 text-rosa-ljus" />}
+      </span>
+    </>
+  );
+  return (
+    <Lutning className="rounded-[1.25rem] bg-ink-svart text-white shadow-[0_24px_48px_-28px_rgb(0_0_0/0.6)]">
+      {u.url ? (
+        <a
+          href={u.url}
+          target="_blank"
+          rel="noopener"
+          aria-label={`${u.bolag}, ${u.roll.toLowerCase()} – bolagets hemsida (öppnas i ny flik)`}
+          className="flex h-full flex-col rounded-[1.25rem] p-3 [transform-style:preserve-3d]"
+        >
+          {innehall}
+        </a>
+      ) : (
+        <div className="flex h-full flex-col p-3 [transform-style:preserve-3d]">{innehall}</div>
       )}
-      <div className="border-t border-line px-5 py-3 text-center text-sm text-muted-foreground">
-        {u.roll}
-      </div>
-    </div>
+    </Lutning>
   );
 }
 

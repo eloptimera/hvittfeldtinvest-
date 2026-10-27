@@ -2,40 +2,37 @@ import { Logga } from "@/components/Logga";
 import { STYRELSEUPPDRAG } from "@/lib/innehall";
 
 /**
- * Rosa band med loggorna för nuvarande uppdrag som rullar i en oändlig slinga.
- * Listan dubbleras så att slingan går ihop; kopian är dold för skärmläsare.
- * Pausar vid hovring och fokus, och står still med "minska rörelse".
+ * Smalt band med loggorna för nuvarande uppdrag som rullar i en oändlig slinga.
+ * Loggorna är gråtonade och får färg vid hovring. Listan dubbleras så att slingan går ihop;
+ * kopian är dold för skärmläsare. Pausar vid hovring och fokus, står still med
+ * "minska rörelse".
  */
 export function Loggband() {
   const nu = STYRELSEUPPDRAG.filter((u) => u.status === "nuvarande");
-  // Fyll på så att en halva alltid är bredare än skärmen, även med få bolag.
   const rad = [...nu, ...nu, ...nu];
   return (
-    <section aria-labelledby="nuvarande-rubrik" className="bg-rosa text-white">
-      <div className="container-page pt-9">
-        <h2 id="nuvarande-rubrik" className="caps !font-sans !text-[0.72rem] !tracking-[0.24em]">
-          Nuvarande styrelseuppdrag
+    <section aria-labelledby="nuvarande-rubrik" className="container-page">
+      <div className="flex items-center gap-6 border-y border-line">
+        <h2
+          id="nuvarande-rubrik"
+          className="sr-only shrink-0 !font-sans text-[0.68rem] sm:not-sr-only font-medium tracking-[0.22em] text-muted-foreground uppercase sm:block"
+        >
+          Nuvarande uppdrag
         </h2>
-      </div>
-      <div className="rullram overflow-hidden py-8 [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]">
-        <ul className="rullband flex w-max items-center">
-          {[0, 1].map((halva) =>
-            rad.map((u, i) => (
-              <li
-                key={`${halva}-${i}`}
-                aria-hidden={halva === 1 || i >= nu.length ? true : undefined}
-                className="px-10 sm:px-14"
-              >
-                <Logga
-                  uppdrag={u}
-                  variant="vit"
-                  dold={halva === 1 || i >= nu.length}
-                  className="h-12 min-w-36 opacity-90 transition-opacity duration-200 hover:opacity-100"
-                />
-              </li>
-            )),
-          )}
-        </ul>
+        <div className="rullram min-w-0 flex-1 overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)]">
+          <ul className="rullband flex w-max items-center">
+            {[0, 1].map((halva) =>
+              rad.map((u, i) => {
+                const dold = halva === 1 || i >= nu.length;
+                return (
+                  <li key={`${halva}-${i}`} aria-hidden={dold || undefined} className="px-7">
+                    <Logga uppdrag={u} variant="dampad" dold={dold} className="h-8 min-w-24" />
+                  </li>
+                );
+              }),
+            )}
+          </ul>
+        </div>
       </div>
     </section>
   );
