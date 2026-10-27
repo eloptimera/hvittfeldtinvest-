@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { Styrelseuppdrag } from "@/lib/innehall";
 
 /**
@@ -11,6 +12,8 @@ export function Logga({
   className = "",
   dold = false,
   lank = true,
+  storlek = 40,
+  style,
 }: {
   uppdrag: Styrelseuppdrag;
   /** "farg" = loggan i egna färger, "dampad" = gråtonad tills man hovrar (loggbandet). */
@@ -20,18 +23,30 @@ export function Logga({
   dold?: boolean;
   /** false = aldrig en länk (när en omgivande box redan är länken). */
   lank?: boolean;
+  /** Bredd i procent för en kvadratisk logga; övriga skalas efter roten ur proportionen. */
+  storlek?: number;
+  /** Stil på ytterelementet (t.ex. fast bredd i loggbandet). */
+  style?: CSSProperties;
 }) {
   const dampad =
     variant === "dampad"
       ? "opacity-60 grayscale transition-[opacity,filter] duration-300 group-hover/logga:opacity-100 group-hover/logga:grayscale-0"
       : "";
+  // Samma yta för alla loggor: bredden växer med roten ur proportionen, så att breda
+  // ordbilder inte dominerar och höga symboler inte blir för stora.
+  const r = uppdrag.proportion ?? 3;
+  const bredd = `${Math.round(Math.min(100, Math.sqrt(r) * storlek))}%`;
   const innehall = uppdrag.logo ? (
     <img
       src={uppdrag.logo}
       alt={uppdrag.bolag}
       loading="lazy"
       decoding="async"
-      className={`max-h-full w-auto max-w-full object-contain ${dampad}`}
+      style={{ width: bredd }}
+      className={`h-auto max-h-full object-contain ${dampad} ${
+        // Mymos logga är ljusgrå och försvinner annars mot vit botten.
+        uppdrag.logo.includes("mymo") ? "[filter:drop-shadow(0_0_0.6px_rgb(0_0_0/0.55))]" : ""
+      }`}
     />
   ) : (
     <span
@@ -46,7 +61,12 @@ export function Logga({
   );
 
   const bas = `group/logga flex items-center justify-center ${className}`;
-  if (!uppdrag.url || !lank) return <div className={bas}>{innehall}</div>;
+  if (!uppdrag.url || !lank)
+    return (
+      <div className={bas} style={style}>
+        {innehall}
+      </div>
+    );
   return (
     <a
       href={uppdrag.url}
@@ -55,6 +75,7 @@ export function Logga({
       tabIndex={dold ? -1 : undefined}
       aria-label={uppdrag.logo ? `${uppdrag.bolag} (öppnas i ny flik)` : undefined}
       className={bas}
+      style={style}
     >
       {innehall}
     </a>

@@ -26,10 +26,11 @@ Rubrikerna får ett rosa penseldrag som ritas fram när de scrollas in i bild.
 
 ## Loggor
 
-Loggorna läses från `public/logos/`. Lägg filen där (helst SVG, annars PNG med transparent
-bakgrund) och sätt `logo: "/logos/<namn>.svg"` på bolaget i `src/lib/innehall.ts`. Utan
-loggfil visas bolagsnamnet som ordbild. Loggan blir klickbar bara om bolaget har `url`.
-I det rosa bandet visas loggorna vita, på uppdragssidan i egna färger.
+Loggorna ligger som transparenta PNG-filer i `public/logos/` och kopplas till bolaget med
+`logo` och `proportion` (bredd/höjd) i `src/lib/innehall.ts`. Proportionen används för att ge
+alla loggor samma visuella tyngd. Utan loggfil visas bolagsnamnet som ordbild. Loggan blir
+klickbar bara om bolaget har `url`. I loggbandet är de gråtonade tills man hovrar, på
+uppdragssidan visas de i färg.
 
 ## Var saker finns
 

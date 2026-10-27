@@ -144,18 +144,21 @@ export type Styrelseuppdrag = {
   status: "nuvarande" | "tidigare";
   /** Bolagets hemsida. Utelämnad = loggan går inte att klicka på. */
   url?: string;
-  /** Loggfil i public/logos/ (svg eller png). Utelämnad = bolagsnamnet visas som ordbild. */
+  /** Transparent loggfil i public/logos/. Utelämnad = bolagsnamnet visas som ordbild. */
   logo?: string;
+  /** Loggans bredd/höjd – används för att ge alla loggor samma visuella tyngd. */
+  proportion?: number;
   /** Kort om bolaget eller uppdraget – bara det som går att belägga. */
   not?: string;
 };
 
 /** Nuvarande uppdrag först, sedan övriga. Hemsidorna är kontrollerade mot bolagens egna sidor
- * eller register (oktober 2026); bolag utan bekräftad hemsida saknar `url` och går inte att klicka på. TODO(Hvittfeldt): stäm av listan med Ankie och lägg
- * loggfilerna i public/logos/ – Bolagsverket visar 12 befattningar men bara 5 publikt. */
+ * eller register (oktober 2026); bolag utan bekräftad hemsida saknar `url` och går inte att klicka på. Ordningen här är ordningen på sajten. */
 export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   {
     bolag: "Everdrone AB",
+    logo: "/logos/everdrone.png",
+    proportion: 6.98,
     url: "https://everdrone.com",
     roll: "Ordförande",
     typ: "Tillväxtbolag",
@@ -164,6 +167,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Healsafe Interiör AB",
+    logo: "/logos/healsafe.png",
+    proportion: 3.92,
     url: "https://healsafeinterior.com",
     roll: "Ordförande",
     typ: "Ägarlett",
@@ -172,6 +177,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Lightning Group AB",
+    logo: "/logos/lightning-group.png",
+    proportion: 2.93,
     url: "https://www.lightninggroup.se",
     roll: "Ledamot",
     typ: "Noterat",
@@ -180,6 +187,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "NetGroup Engineering AB",
+    logo: "/logos/netgroup.png",
+    proportion: 6.81,
     url: "https://netgroupengineering.com",
     roll: "Ordförande",
     typ: "Ägarlett",
@@ -188,6 +197,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Skaraborgs Ortopedservice AB",
+    logo: "/logos/ortopedservice.png",
+    proportion: 2.46,
     url: "https://ortopedservice.se",
     roll: "Ordförande",
     typ: "Ägarlett",
@@ -196,6 +207,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "VTI",
+    logo: "/logos/vti.png",
+    proportion: 1.46,
     url: "https://www.vti.se",
     roll: "Ledamot",
     typ: "Statligt ägt",
@@ -204,6 +217,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "GLC",
+    logo: "/logos/glc.png",
+    proportion: 3.25,
     roll: "Ledamot",
     typ: "Ägarlett",
     status: "nuvarande",
@@ -211,6 +226,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Nilörngruppen AB",
+    logo: "/logos/nilorn.png",
+    proportion: 3.17,
     url: "https://www.nilorn.com",
     roll: "Ledamot",
     typ: "Noterat",
@@ -219,6 +236,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Luftfartsverket",
+    logo: "/logos/lfv.png",
+    proportion: 2.07,
     url: "https://www.lfv.se",
     roll: "Ledamot",
     typ: "Statligt ägt",
@@ -227,6 +246,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Green Cargo AB",
+    logo: "/logos/green-cargo.png",
+    proportion: 2.59,
     url: "https://www.greencargo.com",
     roll: "Ledamot",
     typ: "Statligt ägt",
@@ -235,6 +256,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Integra Engineering AB",
+    logo: "/logos/integra.png",
+    proportion: 3.52,
     roll: "Ordförande och ledamot",
     typ: "Ägarlett",
     status: "tidigare",
@@ -242,6 +265,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Mymo AB",
+    logo: "/logos/mymo.png",
+    proportion: 2.61,
     url: "https://mymo.se",
     roll: "Ordförande",
     typ: "Tillväxtbolag",
@@ -249,6 +274,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "VFG Utbildning AB",
+    logo: "/logos/vfg.png",
+    proportion: 2.58,
     url: "https://www.vfg.se",
     roll: "Ordförande",
     typ: "Ägarlett",
@@ -256,6 +283,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Brålanda Industri AB",
+    logo: "/logos/bralanda.png",
+    proportion: 3.12,
     url: "https://bralandaindustri.se",
     roll: "Ordförande",
     typ: "Ägarlett",
@@ -263,6 +292,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Berlex AB",
+    logo: "/logos/berlex.png",
+    proportion: 4.69,
     url: "https://www.berlex.se",
     roll: "Ordförande",
     typ: "Ägarlett",
@@ -270,6 +301,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Wikström Installationskonsult AB",
+    logo: "/logos/wikstrom.png",
+    proportion: 1.59,
     url: "https://www.wikstromab.se",
     roll: "Ordförande",
     typ: "Ägarlett",
@@ -277,14 +310,25 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Intereast Transport AB",
+    logo: "/logos/intereast.png",
+    proportion: 1.46,
     url: "https://www.intereastgroup.com/sv/",
     roll: "Ordförande och ledamot",
     typ: "Ägarlett",
     status: "tidigare",
   },
-  { bolag: "Modern Ekonomi AB", roll: "Ledamot", typ: "Noterat", status: "tidigare" },
+  {
+    bolag: "Modern Ekonomi AB",
+    logo: "/logos/modern-ekonomi.png",
+    proportion: 1.32,
+    roll: "Ledamot",
+    typ: "Noterat",
+    status: "tidigare",
+  },
   {
     bolag: "AA Bolagen AB",
+    logo: "/logos/aa-bolagen.png",
+    proportion: 1.0,
     url: "https://www.aabolagen.se",
     roll: "Ledamot",
     typ: "Ägarlett",

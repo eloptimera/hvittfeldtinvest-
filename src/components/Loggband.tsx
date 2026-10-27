@@ -26,7 +26,14 @@ export function Loggband() {
                 const dold = halva === 1 || i >= nu.length;
                 return (
                   <li key={`${halva}-${i}`} aria-hidden={dold || undefined} className="px-7">
-                    <Logga uppdrag={u} variant="dampad" dold={dold} className="h-8 min-w-24" />
+                    <Logga
+                      uppdrag={u}
+                      variant="dampad"
+                      dold={dold}
+                      storlek={100}
+                      className="h-9"
+                      style={{ width: `${Math.round(Math.sqrt(u.proportion ?? 3) * 48)}px` }}
+                    />
                   </li>
                 );
               }),
