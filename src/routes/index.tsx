@@ -4,7 +4,7 @@ import { Avsnitt } from "@/components/Heading";
 import { Loggband } from "@/components/Loggband";
 import { Tona } from "@/components/Synlig";
 import { FORETAG } from "@/lib/foretag";
-import { TJANSTER } from "@/lib/innehall";
+import { STYRELSEUPPDRAG, TJANSTER } from "@/lib/innehall";
 import { PORTRATT, sidhuvud } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
@@ -128,7 +128,8 @@ function Start() {
             </p>
             <p className="text-muted-foreground">
               I dag är jag ordförande och ledamot i bolag inom bland annat drönarteknik, belysning,
-              teknikkonsulting och vård, och driver {FORETAG.juridisktNamn} i Göteborg.
+              transportforskning, teknikkonsulting och vård, och driver {FORETAG.juridisktNamn} i
+              Göteborg.
             </p>
             <Link to="/om-mig" className="lank inline-flex items-center gap-2 text-base">
               Mer om mig
@@ -138,7 +139,10 @@ function Start() {
           <dl className="grid grid-cols-2 gap-px self-start overflow-hidden rounded-md bg-line">
             {[
               ["15+", "år i styrelser"],
-              ["5", "nuvarande uppdrag"],
+              [
+                String(STYRELSEUPPDRAG.filter((u) => u.status === "nuvarande").length),
+                "nuvarande uppdrag",
+              ],
               ["9", "år i Luftfartsverket"],
               ["2009", "första styrelseprogrammet"],
             ].map(([v, t]) => (

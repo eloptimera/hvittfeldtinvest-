@@ -26,7 +26,7 @@ function llmsText(): string {
     "",
     ...STYRELSEUPPDRAG.map(
       (u) =>
-        `- ${u.bolag} – ${u.roll.toLowerCase()} (${u.status === "nuvarande" ? "nuvarande" : u.status === "tidigare" ? "tidigare" : "uppdrag genom åren"})${u.url ? ` – ${u.url}` : ""}${u.not ? `. ${u.not}` : ""}`,
+        `- ${u.bolag} – ${u.roll.toLowerCase()} (${u.status})${u.url ? ` – ${u.url}` : ""}${u.not ? `. ${u.not}` : ""}`,
     ),
     "",
     "## Operativ bakgrund",

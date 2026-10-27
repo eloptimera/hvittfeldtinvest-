@@ -27,7 +27,6 @@ export const Route = createFileRoute("/erfarenhet")({
 const GRUPPER: readonly { status: Styrelseuppdrag["status"]; rubrik: string; id: string }[] = [
   { status: "nuvarande", rubrik: "Nuvarande uppdrag", id: "nuvarande" },
   { status: "tidigare", rubrik: "Tidigare uppdrag", id: "tidigare" },
-  { status: "övrigt", rubrik: "Fler uppdrag genom åren", id: "ovriga" },
 ];
 
 /**

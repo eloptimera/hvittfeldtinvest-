@@ -138,10 +138,10 @@ export type Styrelseuppdrag = {
   roll: "Ordförande" | "Ledamot" | "Ordförande och ledamot";
   typ: Agartyp;
   /**
-   * "nuvarande" = registrerat hos Bolagsverket i oktober 2026 (via allabolag.se).
-   * "tidigare" = belagt avslutat. "övrigt" = uppdrag genom åren där dagens status inte är belagd.
+   * "nuvarande" = enligt Bolagsverket (oktober 2026) och kunden. "tidigare" = övriga uppdrag
+   * genom åren.
    */
-  status: "nuvarande" | "tidigare" | "övrigt";
+  status: "nuvarande" | "tidigare";
   /** Bolagets hemsida. Utelämnad = loggan går inte att klicka på. */
   url?: string;
   /** Loggfil i public/logos/ (svg eller png). Utelämnad = bolagsnamnet visas som ordbild. */
@@ -180,6 +180,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "NetGroup Engineering AB",
+    url: "https://netgroupengineering.com",
     roll: "Ordförande",
     typ: "Ägarlett",
     status: "nuvarande",
@@ -192,6 +193,21 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
     typ: "Ägarlett",
     status: "nuvarande",
     not: "Ortopedteknisk verksamhet i Skövde.",
+  },
+  {
+    bolag: "VTI",
+    url: "https://www.vti.se",
+    roll: "Ledamot",
+    typ: "Statligt ägt",
+    status: "nuvarande",
+    not: "Statens väg- och transportforskningsinstitut.",
+  },
+  {
+    bolag: "GLC",
+    roll: "Ledamot",
+    typ: "Ägarlett",
+    status: "nuvarande",
+    not: "Göteborgs Lastbilcentral, ekonomisk förening.",
   },
   {
     bolag: "Nilörngruppen AB",
@@ -229,37 +245,51 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
     url: "https://mymo.se",
     roll: "Ordförande",
     typ: "Tillväxtbolag",
-    status: "övrigt",
+    status: "tidigare",
   },
   {
     bolag: "VFG Utbildning AB",
     url: "https://www.vfg.se",
     roll: "Ordförande",
     typ: "Ägarlett",
-    status: "övrigt",
+    status: "tidigare",
   },
-  { bolag: "Brålanda Industri AB", roll: "Ordförande", typ: "Ägarlett", status: "övrigt" },
+  {
+    bolag: "Brålanda Industri AB",
+    url: "https://bralandaindustri.se",
+    roll: "Ordförande",
+    typ: "Ägarlett",
+    status: "tidigare",
+  },
   {
     bolag: "Berlex AB",
     url: "https://www.berlex.se",
     roll: "Ordförande",
     typ: "Ägarlett",
-    status: "övrigt",
+    status: "tidigare",
   },
   {
     bolag: "Wikström Installationskonsult AB",
+    url: "https://www.wikstromab.se",
     roll: "Ordförande",
     typ: "Ägarlett",
-    status: "övrigt",
+    status: "tidigare",
   },
   {
     bolag: "Intereast Transport AB",
+    url: "https://www.intereastgroup.com/sv/",
     roll: "Ordförande och ledamot",
     typ: "Ägarlett",
-    status: "övrigt",
+    status: "tidigare",
   },
-  { bolag: "Modern Ekonomi AB", roll: "Ledamot", typ: "Noterat", status: "övrigt" },
-  { bolag: "AA Bolagen AB", roll: "Ledamot", typ: "Ägarlett", status: "övrigt" },
+  { bolag: "Modern Ekonomi AB", roll: "Ledamot", typ: "Noterat", status: "tidigare" },
+  {
+    bolag: "AA Bolagen AB",
+    url: "https://www.aabolagen.se",
+    roll: "Ledamot",
+    typ: "Ägarlett",
+    status: "tidigare",
+  },
 ];
 
 /** Områden där förändring drivits – beskrivna utifrån belagda uppdrag, inga påhittade siffror.
