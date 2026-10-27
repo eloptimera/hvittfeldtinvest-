@@ -26,7 +26,7 @@ Rubrikerna får ett rosa penseldrag som ritas fram när de scrollas in i bild.
 
 ## Loggor
 
-Loggorna ligger som transparenta PNG-filer i `public/logos/` och kopplas till bolaget med
+Loggorna ligger som transparenta WebP-filer (max 400 px, cirka 8 kB var) i `public/logos/` och kopplas till bolaget med
 `logo` och `proportion` (bredd/höjd) i `src/lib/innehall.ts`. Proportionen används för att ge
 alla loggor samma visuella tyngd. Utan loggfil visas bolagsnamnet som ordbild. Loggan blir
 klickbar bara om bolaget har `url`. I loggbandet är de gråtonade tills man hovrar, på

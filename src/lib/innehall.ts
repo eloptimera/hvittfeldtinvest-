@@ -157,7 +157,7 @@ export type Styrelseuppdrag = {
 export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   {
     bolag: "Everdrone AB",
-    logo: "/logos/everdrone.png",
+    logo: "/logos/everdrone.webp",
     proportion: 6.98,
     url: "https://everdrone.com",
     roll: "Ordförande",
@@ -167,7 +167,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Healsafe Interiör AB",
-    logo: "/logos/healsafe.png",
+    logo: "/logos/healsafe.webp",
     proportion: 3.92,
     url: "https://healsafeinterior.com",
     roll: "Ordförande",
@@ -177,7 +177,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Lightning Group AB",
-    logo: "/logos/lightning-group.png",
+    logo: "/logos/lightning-group.webp",
     proportion: 2.93,
     url: "https://www.lightninggroup.se",
     roll: "Ledamot",
@@ -187,8 +187,8 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "NetGroup Engineering AB",
-    logo: "/logos/netgroup.png",
-    proportion: 6.81,
+    logo: "/logos/netgroup.webp",
+    proportion: 4.14,
     url: "https://netgroupengineering.com",
     roll: "Ordförande",
     typ: "Ägarlett",
@@ -197,7 +197,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Skaraborgs Ortopedservice AB",
-    logo: "/logos/ortopedservice.png",
+    logo: "/logos/ortopedservice.webp",
     proportion: 2.46,
     url: "https://ortopedservice.se",
     roll: "Ordförande",
@@ -207,7 +207,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "VTI",
-    logo: "/logos/vti.png",
+    logo: "/logos/vti.webp",
     proportion: 1.46,
     url: "https://www.vti.se",
     roll: "Ledamot",
@@ -217,7 +217,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "GLC",
-    logo: "/logos/glc.png",
+    logo: "/logos/glc.webp",
     proportion: 3.25,
     roll: "Ledamot",
     typ: "Ägarlett",
@@ -226,7 +226,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Nilörngruppen AB",
-    logo: "/logos/nilorn.png",
+    logo: "/logos/nilorn.webp",
     proportion: 3.17,
     url: "https://www.nilorn.com",
     roll: "Ledamot",
@@ -236,7 +236,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Luftfartsverket",
-    logo: "/logos/lfv.png",
+    logo: "/logos/lfv.webp",
     proportion: 2.07,
     url: "https://www.lfv.se",
     roll: "Ledamot",
@@ -246,7 +246,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Green Cargo AB",
-    logo: "/logos/green-cargo.png",
+    logo: "/logos/green-cargo.webp",
     proportion: 2.59,
     url: "https://www.greencargo.com",
     roll: "Ledamot",
@@ -256,7 +256,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Integra Engineering AB",
-    logo: "/logos/integra.png",
+    logo: "/logos/integra.webp",
     proportion: 3.52,
     roll: "Ordförande och ledamot",
     typ: "Ägarlett",
@@ -265,7 +265,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Mymo AB",
-    logo: "/logos/mymo.png",
+    logo: "/logos/mymo.webp",
     proportion: 2.61,
     url: "https://mymo.se",
     roll: "Ordförande",
@@ -274,7 +274,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "VFG Utbildning AB",
-    logo: "/logos/vfg.png",
+    logo: "/logos/vfg.webp",
     proportion: 2.58,
     url: "https://www.vfg.se",
     roll: "Ordförande",
@@ -283,7 +283,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Brålanda Industri AB",
-    logo: "/logos/bralanda.png",
+    logo: "/logos/bralanda.webp",
     proportion: 3.12,
     url: "https://bralandaindustri.se",
     roll: "Ordförande",
@@ -292,7 +292,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Berlex AB",
-    logo: "/logos/berlex.png",
+    logo: "/logos/berlex.webp",
     proportion: 4.69,
     url: "https://www.berlex.se",
     roll: "Ordförande",
@@ -301,7 +301,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Wikström Installationskonsult AB",
-    logo: "/logos/wikstrom.png",
+    logo: "/logos/wikstrom.webp",
     proportion: 1.59,
     url: "https://www.wikstromab.se",
     roll: "Ordförande",
@@ -310,7 +310,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Intereast Transport AB",
-    logo: "/logos/intereast.png",
+    logo: "/logos/intereast.webp",
     proportion: 1.46,
     url: "https://www.intereastgroup.com/sv/",
     roll: "Ordförande och ledamot",
@@ -319,7 +319,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "Modern Ekonomi AB",
-    logo: "/logos/modern-ekonomi.png",
+    logo: "/logos/modern-ekonomi.webp",
     proportion: 1.32,
     roll: "Ledamot",
     typ: "Noterat",
@@ -327,7 +327,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
   {
     bolag: "AA Bolagen AB",
-    logo: "/logos/aa-bolagen.png",
+    logo: "/logos/aa-bolagen.webp",
     proportion: 1.0,
     url: "https://www.aabolagen.se",
     roll: "Ledamot",

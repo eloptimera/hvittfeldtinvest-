@@ -40,7 +40,8 @@ export function Logga({
     <img
       src={uppdrag.logo}
       alt={uppdrag.bolag}
-      loading="lazy"
+      // Ingen lat laddning: Safari skjuter annars upp bilder i 3D-transformerade och
+      // intonade element. Filerna är små (cirka 8 kB var).
       decoding="async"
       style={{ width: bredd }}
       className={`h-auto max-h-full object-contain ${dampad} ${

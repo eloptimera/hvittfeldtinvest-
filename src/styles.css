@@ -2,7 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 @import "@fontsource-variable/fraunces/full.css";
-@import "@fontsource-variable/fraunces/full-italic.css";
 @import "@fontsource-variable/dm-sans/wght.css";
 
 @custom-variant dark (&:is(.dark *));
