@@ -1,19 +1,10 @@
 import { BYRA, FORETAG } from "@/lib/foretag";
 
-/**
- * Ordmärket: "Hvittfeldt" i Bodoni med "Invest" i små versaler och en tunn guldlinje.
- * Ren text – syns skarpt i alla storlekar och följer textfärgen (ljus/mörk botten).
- */
-export function Ordmarke({ ljus = false, className = "" }: { ljus?: boolean; className?: string }) {
+/** Ordmärket i sidhuvudet: bolagsnamnet i Cormorant, följer textfärgen. */
+export function Ordmarke({ className = "" }: { className?: string }) {
   return (
-    <span
-      className={`inline-flex items-center gap-3 ${ljus ? "text-white" : "text-ink"} ${className}`}
-    >
-      <span className="font-display text-[1.6rem] leading-none tracking-[-0.01em] sm:text-[1.8rem]">
-        Hvittfeldt
-      </span>
-      <span aria-hidden="true" className="h-6 w-px bg-gold" />
-      <span className="caps !text-[0.68rem] !tracking-[0.3em]">Invest</span>
+    <span className={`font-display text-[1.5rem] leading-none tracking-[0.01em] ${className}`}>
+      Hvittfeldt Invest
       <span className="sr-only"> – {FORETAG.person}</span>
     </span>
   );
@@ -36,7 +27,7 @@ export function TabLogga({ className = "" }: { className?: string }) {
       target="_blank"
       rel="noopener"
       aria-label={`${BYRA.namn} (öppnas i ny flik)`}
-      className={`inline-flex h-7 items-center rounded-sm text-white opacity-90 transition-opacity duration-200 hover:opacity-100 ${className}`}
+      className={`inline-flex h-6 items-center rounded-sm text-ink opacity-85 transition-opacity duration-200 hover:opacity-100 ${className}`}
     >
       <img
         src="/logo/tab-chip.svg"

@@ -1,68 +1,52 @@
 import type { ReactNode } from "react";
 
-/** Markerat ord – kursiv Bodoni i plommon. */
-export function Mark({ children, nowrap = false }: { children: ReactNode; nowrap?: boolean }) {
-  return (
-    <span className={`text-brand italic ${nowrap ? "whitespace-nowrap" : ""}`}>{children}</span>
-  );
-}
-
-/** Sidhuvud för undersidor: elfenbensyta, serif-rubrik och en tunn guldlinje under. */
+/** Sidhuvud för undersidor: liten spärrad rad, stor Cormorant-rubrik och en kort ingress. */
 export function PageHero({
-  eyebrow,
+  etikett,
   title,
   intro,
-  children,
 }: {
-  eyebrow: string;
+  etikett: string;
   title: ReactNode;
   intro?: ReactNode;
-  children?: ReactNode;
 }) {
   return (
-    <section className="relative">
-      <div className="container-page pt-14 pb-14 sm:pt-20 sm:pb-20">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-6 max-w-4xl text-[clamp(2.4rem,5.6vw,4.75rem)] leading-[1.04]">
-          {title}
-        </h1>
-        {intro && (
-          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            {intro}
-          </p>
-        )}
-        {children && <div className="mt-9 flex flex-wrap gap-3">{children}</div>}
-      </div>
-      <div className="container-page" aria-hidden="true">
-        <div className="h-px bg-gradient-to-r from-gold via-line to-transparent" />
-      </div>
+    <section className="container-page pt-12 pb-4 text-center sm:pt-20">
+      <p className="caps text-muted-foreground">{etikett}</p>
+      <h1 className="mx-auto mt-6 max-w-3xl text-[clamp(2.75rem,7vw,5rem)]">{title}</h1>
+      {intro && (
+        <p className="mx-auto mt-6 max-w-2xl font-display text-[1.375rem] leading-snug text-muted-foreground sm:text-2xl">
+          {intro}
+        </p>
+      )}
     </section>
   );
 }
 
-/** Sektionsrubrik: liten versal rad och en serif-rubrik. */
-export function Sektionsrubrik({
-  eyebrow,
+/**
+ * Ett avsnitt: etikett i vänsterspalten, innehåll i högerspalten, en hårfin linje ovanför.
+ * Ger sajten samma lugna rytm på alla sidor.
+ */
+export function Avsnitt({
+  etikett,
   id,
   children,
-  intro,
-  className = "",
 }: {
-  eyebrow: string;
+  etikett: string;
   id?: string;
   children: ReactNode;
-  intro?: ReactNode;
-  className?: string;
 }) {
   return (
-    <div className={className}>
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 id={id} className="mt-5 max-w-3xl text-4xl sm:text-5xl">
-        {children}
-      </h2>
-      {intro && (
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">{intro}</p>
-      )}
-    </div>
+    <section
+      aria-labelledby={id}
+      className="container-page mt-20 grid gap-6 sm:mt-28 md:grid-cols-[13rem_1fr] md:gap-12"
+    >
+      <div className="border-t border-ink pt-5">
+        <h2 id={id} className="caps !font-sans !text-[0.72rem] !leading-normal">
+          {etikett}
+        </h2>
+      </div>
+      <div className="border-t border-line pt-5 md:pt-4">{children}</div>
+    </section>
   );
 }

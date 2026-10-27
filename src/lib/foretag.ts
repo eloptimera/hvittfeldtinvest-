@@ -34,11 +34,12 @@ export const FORETAG: {
   beskrivning:
     "Styrelseuppdrag, styrelseutvärdering och rådgivning kring ägarstyrning för ägarledda, statligt ägda och noterade bolag – med Ankie Hvittfeldt, professionell styrelseledamot och ordförande med mer än 15 års erfarenhet.",
   region: "Västsverige",
-  // TODO(Hvittfeldt): fyll i ort, gatuadress, postnummer, org.nr, telefon och e-post.
-  ort: "",
-  orgnr: "",
-  gata: "",
-  postnummer: "",
+  // Org.nr och säte enligt Bolagsverket (via allabolag.se, 2026-10-27).
+  ort: "Göteborg",
+  orgnr: "556835-8294",
+  gata: "Svenslyckegatan 16",
+  postnummer: "416 56",
+  // TODO(Hvittfeldt): fyll i telefon och e-post.
   telefon: "",
   telefonLank: "",
   epost: "",
@@ -49,7 +50,6 @@ export const FORETAG: {
 export const PLATSHALLARE = {
   epost: "[E-postadress]",
   telefon: "[Telefonnummer]",
-  adress: "[Gatuadress, postnummer och ort]",
 } as const;
 
 /** Webbyrån som byggt och förvaltar sajten – loggan längst ner på varje sida länkar hit. */

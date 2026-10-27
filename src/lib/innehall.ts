@@ -7,135 +7,53 @@
 // TODO(Hvittfeldt): stäm av listan mot LinkedIn – vilka uppdrag är aktuella i dag, årtal,
 // befattningar i de operativa rollerna och eventuella utbildningar/certifieringar.
 
-export type Fraga = { fraga: string; svar: string };
-
 export type Tjanst = {
   slug: string;
   titel: string;
-  /** En mening – startsidan, sidfoten och strukturerad data. */
+  /** En mening – startsidan och strukturerad data. */
   kort: string;
   ingress: string;
-  /** Vad uppdraget ger bolaget. */
-  varde: readonly string[];
-  /** När tjänsten passar. */
-  nar: readonly string[];
-  /** Hur uppdraget går till, i ordning. */
-  sa: readonly { titel: string; text: string }[];
+  /** Vad uppdraget omfattar. */
+  omfattar: readonly string[];
 };
 
 export const TJANSTER: readonly Tjanst[] = [
   {
     slug: "styrelseuppdrag",
     titel: "Styrelseuppdrag",
-    kort: "Ledamot eller ordförande med fokus på strategi, tillväxt och governance.",
+    kort: "Ledamot eller ordförande med fokus på strategi, tillväxt och bolagsstyrning.",
     ingress:
-      "En styrelse ska göra skillnad för bolagets utveckling – inte bara godkänna det som redan hänt. Som ledamot eller ordförande bidrar jag med ett oberoende perspektiv, en strukturerad styrelseprocess och erfarenhet från ägarledda, statligt ägda och noterade bolag.",
-    varde: [
-      "En styrelse där strategin och omvärlden står först på dagordningen – och rapporteringen sist",
+      "Uppdrag som styrelseledamot eller styrelseordförande, med fokus på strategi, tillväxt och god bolagsstyrning. Erfarenheten kommer från ägarledda, statligt ägda och noterade bolag.",
+    omfattar: [
+      "Strategiarbete och löpande uppföljning av strategin",
+      "Ordförandeskap: dagordning, årshjul, arbetsordning och vd-instruktion",
       "Tydlig rollfördelning mellan ägare, styrelse och vd",
-      "Uppföljning som gör att beslut faktiskt genomförs",
-      "Ett stöd och bollplank för vd mellan styrelsemötena",
-      "Ordning på formalia: arbetsordning, vd-instruktion, årshjul och protokoll",
-    ],
-    nar: [
-      "Valberedningen söker en oberoende ledamot eller ordförande",
-      "Bolaget går in i en tillväxt- eller expansionsfas",
-      "Styrelsen behöver förstärkas inom strategi, logistik, transport eller operativ styrning",
-      "Ägaren vill gå från en formell styrelse till en arbetande styrelse",
-    ],
-    sa: [
-      {
-        titel: "Förutsättningslöst samtal",
-        text: "Vi går igenom bolaget, ägarbilden och vad styrelsen behöver.",
-      },
-      {
-        titel: "Möte med ägare och valberedning",
-        text: "Vi stämmer av förväntningar, roll, tidsåtgång och oberoende.",
-      },
-      {
-        titel: "Introduktion",
-        text: "Genomgång av verksamhet, ekonomi, risker och strategi innan första mötet.",
-      },
-      {
-        titel: "Löpande styrelsearbete",
-        text: "Förberedda möten, tydliga beslut och uppföljning genom hela året.",
-      },
+      "Stöd till vd mellan styrelsemötena",
     ],
   },
   {
     slug: "styrelseutvardering",
     titel: "Styrelseutvärdering",
-    kort: "Oberoende analys av styrelsens sammansättning, arbetssätt och effektivitet.",
+    kort: "Oberoende analys av styrelsens sammansättning och arbetssätt.",
     ingress:
-      "En styrelseutvärdering visar om styrelsen har rätt kompetens, arbetar med rätt frågor och fungerar som ett team. Utvärderingen görs av någon utanför styrelsen, så att svaren blir ärliga och slutsatserna går att använda – av ordföranden, styrelsen och valberedningen.",
-    varde: [
-      "En kompetensmatris som visar styrkor och luckor i styrelsens sammansättning",
-      "En bild av hur möten, dagordning och informationsflöde fungerar i praktiken",
-      "Bedömning av samspelet mellan ordförande, ledamöter och vd",
-      "Konkreta förbättringsförslag i prioriterad ordning",
-      "Ett underlag som valberedningen kan använda inför nästa stämma",
-    ],
-    nar: [
-      "Inför årsstämman, som underlag för valberedningens arbete",
-      "När styrelsen har förändrats eller bolagets situation har ändrats",
-      "När ordföranden vill utveckla styrelsearbetet men saknar ett oberoende underlag",
-      "Som återkommande årlig utvärdering, enligt god bolagsstyrning",
-    ],
-    sa: [
-      {
-        titel: "Uppstart med ordföranden",
-        text: "Vi bestämmer syfte, omfattning och vem som får resultatet.",
-      },
-      {
-        titel: "Enkät och intervjuer",
-        text: "Varje ledamot och vd svarar konfidentiellt. Styrelsedokumenten gås igenom.",
-      },
-      {
-        titel: "Analys och rapport",
-        text: "Resultat, kompetensmatris och förbättringsförslag sammanställs.",
-      },
-      {
-        titel: "Återkoppling",
-        text: "Genomgång med styrelsen och vid behov med valberedningen.",
-      },
+      "En oberoende utvärdering av styrelsens sammansättning, arbetssätt och samspel med vd. Resultatet är ett underlag för ordföranden, styrelsen och valberedningen.",
+    omfattar: [
+      "Enkät och konfidentiella intervjuer med ledamöter och vd",
+      "Kompetensmatris över styrelsens sammansättning",
+      "Genomgång av möten, dagordning och informationsflöde",
+      "Rapport med förbättringsförslag och återkoppling till styrelsen",
     ],
   },
   {
     slug: "radgivning-agarstyrning",
-    titel: "Rådgivning & ägarstyrning",
+    titel: "Rådgivning och ägarstyrning",
     kort: "Stöd till ägare och ledning vid tillväxt, ägarskiften och strukturering.",
     ingress:
-      "Som ägare behöver du en styrelse och en struktur som passar bolagets nästa fas. Jag stöttar ägare och ledning med att formulera ägarens förväntningar, sätta samman rätt styrelse och skapa en styrning som håller genom tillväxt, generationsskifte eller försäljning.",
-    varde: [
-      "Ägardirektiv som gör förväntningarna på styrelse och ledning tydliga",
-      "Rätt sammansatt styrelse – eller en rådgivande styrelse som första steg",
-      "Struktur inför ägarskifte, generationsskifte, förvärv eller försäljning",
-      "En styrning som håller när bolaget växer från ägarlett till mer professionaliserat",
-      "Ett oberoende bollplank i beslut där ägaren står ensam",
-    ],
-    nar: [
-      "Ett ägarlett bolag ska bygga en arbetande styrelse för första gången",
-      "Ett generationsskifte eller ägarskifte planeras",
-      "Bolaget förbereds för försäljning, förvärv eller extern finansiering",
-      "Ägare och ledning behöver en tydligare rollfördelning",
-    ],
-    sa: [
-      {
-        titel: "Förutsättningslöst samtal",
-        text: "Vi går igenom ägarbilden, bolagets läge och vad som behöver lösas.",
-      },
-      {
-        titel: "Nulägesanalys",
-        text: "Genomgång av ägarstruktur, styrelse, dokument och beslutsvägar.",
-      },
-      {
-        titel: "Förslag",
-        text: "Konkreta rekommendationer och en plan i den ordning de bör genomföras.",
-      },
-      {
-        titel: "Genomförande",
-        text: "Stöd i rekrytering, dokument, ägar- och styrelsemöten så länge det behövs.",
-      },
+      "Stöd till ägare och ledning när bolaget växer, byter ägare eller behöver en ny struktur för styrningen.",
+    omfattar: [
+      "Ägardirektiv och förväntningar på styrelse och ledning",
+      "Sammansättning av styrelse eller rådgivande styrelse",
+      "Struktur inför generationsskifte, ägarskifte, förvärv eller försäljning",
     ],
   },
 ];
@@ -143,13 +61,6 @@ export const TJANSTER: readonly Tjanst[] = [
 export function hittaTjanst(slug: string): Tjanst | undefined {
   return TJANSTER.find((t) => t.slug === slug);
 }
-
-/** Startsidans korta siffror. Håll dem till sådant som går att belägga. */
-export const NYCKELTAL = [
-  { varde: "15+", text: "års erfarenhet som styrelseledamot och ordförande" },
-  { varde: "9", text: "år i styrelsen för Luftfartsverket, ett statligt affärsverk" },
-  { varde: "4", text: "ägarformer: ägarledda, tillväxtbolag, noterade och statligt ägda" },
-] as const;
 
 export const KOMPETENSER = [
   {
@@ -171,10 +82,6 @@ export const KOMPETENSER = [
   {
     titel: "Ekonomi och uppföljning",
     text: "Ekonomisk utbildning och vana att styra på nyckeltal, risk och kassaflöde.",
-  },
-  {
-    titel: "Ledarskap och samtal",
-    text: "Samtalsledare i Västsvenska Handelskammarens chefsnätverk.",
   },
 ] as const;
 
@@ -282,25 +189,6 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
 ];
 
-export const BOLAGSTYPER: readonly { titel: Agartyp; text: string }[] = [
-  {
-    titel: "Ägarlett",
-    text: "Familje- och entreprenörsägda bolag inom industri, installation, utbildning och transport – där styrelsen ofta är ägarens viktigaste stöd.",
-  },
-  {
-    titel: "Tillväxtbolag",
-    text: "Teknik- och tjänstebolag i expansion, där styrelsen behöver balansera tempo, finansiering och kontroll.",
-  },
-  {
-    titel: "Noterat",
-    text: "Börsnoterade bolag med krav på bolagsstyrningskod, informationsgivning och oberoende.",
-  },
-  {
-    titel: "Statligt ägt",
-    text: "Statliga bolag och affärsverk där ägarens uppdrag, samhällsansvar och affär ska gå ihop.",
-  },
-];
-
 /** Områden där förändring drivits – beskrivna utifrån belagda uppdrag, inga påhittade siffror.
  * TODO(Hvittfeldt): komplettera med mätbara resultat som Ankie godkänt (tillväxt, lönsamhet,
  * genomförda förvärv eller ägarskiften) – de väger tyngst för en valberedning. */
@@ -322,23 +210,3 @@ export const VARDESKAPANDE = [
     text: "Ordförandeskap i ägarledda bolag i Västsverige, med strategi och omvärld först på dagordningen och tydlig uppföljning av besluten.",
   },
 ] as const;
-
-/** Vanliga frågor – startsidan och FAQPage-schema. */
-export const FRAGOR: readonly Fraga[] = [
-  {
-    fraga: "Vad är skillnaden mellan styrelseuppdrag och rådgivning?",
-    svar: "I ett styrelseuppdrag är jag vald ledamot eller ordförande och tar fullt ansvar enligt aktiebolagslagen. Som rådgivare stöttar jag ägare och ledning utan att sitta i styrelsen, till exempel inför ett ägarskifte eller när en styrelse ska byggas.",
-  },
-  {
-    fraga: "Vilka bolag arbetar du med?",
-    svar: "Ägarledda bolag, tillväxtbolag, noterade bolag och statligt ägda bolag. De flesta uppdragen finns i Västsverige, men geografin är inget hinder.",
-  },
-  {
-    fraga: "Hur går en styrelseutvärdering till?",
-    svar: "Ledamöter och vd svarar konfidentiellt på en enkät och intervjuas. Resultatet sammanställs i en rapport med kompetensmatris och förbättringsförslag, som gås igenom med styrelsen och vid behov med valberedningen.",
-  },
-  {
-    fraga: "Är samtalet förpliktigande?",
-    svar: "Nej. Det första samtalet är förutsättningslöst och kostnadsfritt. Allt vi pratar om stannar mellan oss.",
-  },
-];

@@ -13,30 +13,29 @@ bun run dev
 
 | Sökväg               | Innehåll                                                    |
 | -------------------- | ----------------------------------------------------------- |
-| `/`                  | Startsida: värdeerbjudande, porträtt, tjänster, kompetenser |
+| `/`                  | Porträtt, namn, roller, kort om, tjänster, urval av uppdrag |
 | `/tjanster`          | De tre tjänsterna med ankare (`#styrelseuppdrag` m.fl.)     |
-| `/om-mig`            | Profil, expertis, branscher, utbildning och nätverk         |
-| `/erfarenhet`        | Operativ bakgrund, styrelseuppdrag, bolagstyper, resultat   |
-| `/kontakt`           | Kontaktuppgifter och kontaktformulär                        |
+| `/om-mig`            | Bakgrund, kompetensområden, branscher, utbildning, nätverk  |
+| `/erfarenhet`        | Styrelseuppdrag per ägarform, exempel, operativ bakgrund    |
+| `/kontakt`           | Kontakt- och bolagsuppgifter (inget formulär)               |
 | `/integritetspolicy` | GDPR-information                                            |
-| `/tack`              | Visas efter skickat formulär (noindex)                      |
+
+Sajten är informativ, inte säljande: inga bokningsknappar, inget formulär och inga
+"vanliga frågor". Designen är monokrom (elfenben och kol) med Cormorant Garamond och DM Sans.
 
 ## Var saker finns
 
-| Fil                   | Innehåll                                                                  |
-| --------------------- | ------------------------------------------------------------------------- |
-| `src/lib/foretag.ts`  | Namn, kontaktuppgifter, LinkedIn – och TAB Marketings länk i sidfoten     |
-| `src/lib/innehall.ts` | Tjänster, kompetenser, styrelseuppdrag, meriter och vanliga frågor        |
-| `src/lib/seo.ts`      | Metadata, porträttet och strukturerad data (schema.org)                   |
-| `src/lib/sidor.ts`    | Sidlistan för `sitemap.xml` och `llms.txt`                                |
-| `src/styles.css`      | Färger och typsnitt (marinblått, plommon, guld – hämtade från porträttet) |
+| Fil                          | Innehåll                                                        |
+| ---------------------------- | --------------------------------------------------------------- |
+| `src/lib/foretag.ts`         | Namn, org.nr, adress, kontaktuppgifter, LinkedIn och TAB:s länk |
+| `src/lib/innehall.ts`        | Tjänster, kompetenser, styrelseuppdrag och meriter              |
+| `src/lib/seo.ts`             | Metadata, porträttet och strukturerad data (schema.org)         |
+| `src/components/Heading.tsx` | `PageHero` och `Avsnitt` – sidhuvud och den tvåspaltiga rytmen  |
+| `src/styles.css`             | Färger och typsnitt                                             |
 
-Sök efter `TODO(Hvittfeldt)` för det som ska fyllas i eller stämmas av: kontaktuppgifter,
-org.nr, vilka styrelseuppdrag som är aktuella, titlar och årtal i de operativa rollerna,
-utbildningar/certifieringar och mätbara resultat.
-
-Tomma kontaktuppgifter visas som platshållare på `/kontakt` och utelämnas i sidfoten och i den
-strukturerade datan tills de fylls i.
+Sök efter `TODO(Hvittfeldt)` för det som ska fyllas i eller stämmas av: telefon och e-post,
+vilka styrelseuppdrag som är aktuella, titlar och årtal i de operativa rollerna och
+utbildningar/certifieringar. Tomma e-post- och telefonfält visas som platshållare på `/kontakt`.
 
 ## Bilder
 
@@ -52,20 +51,9 @@ med när en egen domän kopplas. Vill ni låsa den, sätt `SAJT_URL` i Vercel, t
 `https://www.hvittfeldtinvest.se`. Lägg sedan till domänen i Google Search Console och skicka in
 `/sitemap.xml`.
 
-## Kontaktformuläret
-
-Formuläret på `/kontakt` skickar mejl via [Resend](https://resend.com). Sätt i Vercel
-(Settings → Environment Variables):
-
-- `RESEND_API_KEY` – API-nyckel från Resend
-- `KONTAKT_TILL` – adressen som tar emot förfrågningarna
-- `KONTAKT_FRAN` (valfri) – avsändare när domänen är verifierad i Resend
-
-Utan nyckeln visar formuläret ett felmeddelande i stället för att låtsas att det skickats.
-
 ## Statistik och cookies
 
 - **Vercel Web Analytics** räknar besök utan cookies – slå på under Analytics i Vercel.
-- Klickhändelser (`src/lib/sparning.ts`): `boka_klick`, `kontakt_skickad`, `mejl_klick`.
+- Klickhändelse (`src/lib/sparning.ts`): `mejl_klick`.
 - `META_PIXEL_ID` och `CLARITY_ID` slår på verktyg som kräver samtycke; då visas cookiebannern.
   Är ingen satt finns ingen banner.

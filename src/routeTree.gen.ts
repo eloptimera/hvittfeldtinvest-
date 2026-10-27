@@ -17,7 +17,6 @@ import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as OmMigRouteImport } from './routes/om-mig'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as TackRouteImport } from './routes/tack'
 import { Route as TjansterRouteImport } from './routes/tjanster'
 
 const IndexRoute = IndexRouteImport.update({
@@ -60,11 +59,6 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TackRoute = TackRouteImport.update({
-  id: '/tack',
-  path: '/tack',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TjansterRoute = TjansterRouteImport.update({
   id: '/tjanster',
   path: '/tjanster',
@@ -80,7 +74,6 @@ export interface FileRoutesByFullPath {
   '/om-mig': typeof OmMigRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/tack': typeof TackRoute
   '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesByTo {
@@ -92,7 +85,6 @@ export interface FileRoutesByTo {
   '/om-mig': typeof OmMigRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/tack': typeof TackRoute
   '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesById {
@@ -105,7 +97,6 @@ export interface FileRoutesById {
   '/om-mig': typeof OmMigRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/tack': typeof TackRoute
   '/tjanster': typeof TjansterRoute
 }
 export interface FileRouteTypes {
@@ -119,7 +110,6 @@ export interface FileRouteTypes {
     | '/om-mig'
     | '/robots.txt'
     | '/sitemap.xml'
-    | '/tack'
     | '/tjanster'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -131,7 +121,6 @@ export interface FileRouteTypes {
     | '/om-mig'
     | '/robots.txt'
     | '/sitemap.xml'
-    | '/tack'
     | '/tjanster'
   id:
     | '__root__'
@@ -143,7 +132,6 @@ export interface FileRouteTypes {
     | '/om-mig'
     | '/robots.txt'
     | '/sitemap.xml'
-    | '/tack'
     | '/tjanster'
   fileRoutesById: FileRoutesById
 }
@@ -156,7 +144,6 @@ export interface RootRouteChildren {
   OmMigRoute: typeof OmMigRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  TackRoute: typeof TackRoute
   TjansterRoute: typeof TjansterRoute
 }
 
@@ -218,13 +205,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tack': {
-      id: '/tack'
-      path: '/tack'
-      fullPath: '/tack'
-      preLoaderRoute: typeof TackRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/tjanster': {
       id: '/tjanster'
       path: '/tjanster'
@@ -244,7 +224,6 @@ const rootRouteChildren: RootRouteChildren = {
   OmMigRoute: OmMigRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  TackRoute: TackRoute,
   TjansterRoute: TjansterRoute,
 }
 export const routeTree = rootRouteImport

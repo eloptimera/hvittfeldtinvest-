@@ -2,7 +2,7 @@
 // Varje route anropar sidhuvud() i sin head() – då blir titel, beskrivning, canonical,
 // delningsbild och strukturerad data likadana överallt.
 import { absolut, FORETAG, SAJT_URL } from "@/lib/foretag";
-import { KOMPETENSER, TJANSTER, type Fraga, type Tjanst } from "@/lib/innehall";
+import { KOMPETENSER, TJANSTER, type Tjanst } from "@/lib/innehall";
 
 /** Standardbilden när en länk delas. */
 export const DELNINGSBILD = { src: "/og.jpg", bredd: 1200, hojd: 630 } as const;
@@ -136,18 +136,6 @@ export function tjanstSchema(t: Tjanst): Schema {
     url: absolut(`/tjanster#${t.slug}`),
     provider: { "@id": FORETAG_ID },
     areaServed: { "@type": "Country", name: "Sverige" },
-  };
-}
-
-export function faqSchema(fragor: readonly Fraga[]): Schema {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: fragor.map((f) => ({
-      "@type": "Question",
-      name: f.fraga,
-      acceptedAnswer: { "@type": "Answer", text: f.svar },
-    })),
   };
 }
 
