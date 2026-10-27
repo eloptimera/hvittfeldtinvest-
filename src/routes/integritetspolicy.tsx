@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/Heading";
-import { FORETAG } from "@/lib/foretag";
+import { adressRad, FORETAG } from "@/lib/foretag";
 import { AKTIVA_VERKTYG, BEHOVER_SAMTYCKE, KATEGORIER, oppnaInstallningar } from "@/lib/samtycke";
 import { sidhuvud } from "@/lib/seo";
 
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/integritetspolicy")({
   head: () =>
     sidhuvud({
       titel: "Integritetspolicy",
-      beskrivning: `Så behandlar ${FORETAG.namn} (${FORETAG.juridisktNamn}) dina personuppgifter när du bokar en genomgång eller kontaktar oss.`,
+      beskrivning: `Så behandlar ${FORETAG.juridisktNamn} dina personuppgifter när du kontaktar oss via webbplatsen.`,
       sokvag: "/integritetspolicy",
     }),
   component: Integritetspolicy,
@@ -46,9 +46,9 @@ function Integritetspolicy() {
           <p>
             {FORETAG.juridisktNamn}
             {FORETAG.orgnr && `, org.nr ${FORETAG.orgnr}`}
-            {FORETAG.adress && `, ${FORETAG.adress}`}, som driver {FORETAG.namn}, är
-            personuppgiftsansvarig för behandlingen. Du når oss via{" "}
-            <Link className="font-bold text-brand underline" to="/kontakt">
+            {adressRad() && `, ${adressRad()}`}, är personuppgiftsansvarig för behandlingen. Du når
+            oss via{" "}
+            <Link className="font-semibold text-brand underline" to="/kontakt">
               kontaktformuläret
             </Link>
             {FORETAG.epost && ` eller på ${FORETAG.epost}`}
@@ -57,12 +57,12 @@ function Integritetspolicy() {
         </Sektion>
 
         <Sektion titel="Vilka uppgifter vi samlar in">
-          <p>Vi samlar bara in det du själv skriver i bokningsformuläret:</p>
+          <p>Vi samlar bara in det du själv skriver i kontaktformuläret:</p>
           <ul className="list-disc space-y-1 pl-6">
             <li>
-              <strong className="font-medium text-foreground">Bokningsformuläret:</strong> namn,
-              företag, e-post, telefonnummer, er hemsida, vilka tjänster eller paket ni är
-              intresserade av och ditt meddelande.
+              <strong className="font-medium text-foreground">Kontaktformuläret:</strong> namn,
+              bolag eller organisation, din roll, e-post, telefonnummer, vad förfrågan gäller och
+              ditt meddelande.
             </li>
           </ul>
           <p>
@@ -73,8 +73,8 @@ function Integritetspolicy() {
 
         <Sektion titel="Varför vi behandlar uppgifterna">
           <p>
-            Vi använder uppgifterna för att svara på din fråga och ta fram en offert. Rättslig grund
-            är att det behövs för att vidta åtgärder på din begäran innan ett avtal ingås, och
+            Vi använder uppgifterna för att svara på din fråga och förbereda ett samtal. Rättslig
+            grund är att det behövs för att vidta åtgärder på din begäran innan ett avtal ingås, och
             därefter för att fullgöra avtalet. Om du blir kund sparar vi även underlag som vi är
             skyldiga att bevara enligt bokföringslagen.
           </p>
@@ -83,9 +83,9 @@ function Integritetspolicy() {
 
         <Sektion titel="Hur länge vi sparar dem">
           <p>
-            Vi sparar en förfrågan så länge den är aktuell. Blir det ingen affär raderar vi den när
-            vi inte längre har anledning att spara den. Uppgifter som ingår i bokföringen sparas i
-            den tid lagen kräver.
+            Vi sparar en förfrågan så länge den är aktuell. Blir det inget uppdrag raderar vi den
+            när vi inte längre har anledning att spara den. Uppgifter som ingår i bokföringen sparas
+            i den tid lagen kräver.
           </p>
         </Sektion>
 
@@ -93,7 +93,7 @@ function Integritetspolicy() {
           <p>
             Uppgifterna hanteras av oss och av de tjänsteleverantörer vi använder för att driva
             webbplatsen och ta emot förfrågningar, som behandlar uppgifterna för vår räkning.
-            Förfrågningar från bokningsformuläret skickas till oss som mejl via en e-posttjänst.
+            Förfrågningar från kontaktformuläret skickas till oss som mejl via en e-posttjänst.
             Webbplatsen driftas hos en hostingleverantör som kan se teknisk trafikdata som
             IP-adress. Utöver det lämnar vi bara ut uppgifter om lag kräver det.
           </p>
@@ -129,7 +129,7 @@ function Integritetspolicy() {
                 <button
                   type="button"
                   onClick={oppnaInstallningar}
-                  className="font-bold text-brand underline"
+                  className="font-semibold text-brand underline"
                 >
                   Cookieinställningar
                 </button>
@@ -155,7 +155,7 @@ function Integritetspolicy() {
           <p>
             Kontakta oss så hjälper vi dig. Du har också rätt att klaga hos{" "}
             <a
-              className="font-bold text-brand underline"
+              className="font-semibold text-brand underline"
               href="https://www.imy.se"
               target="_blank"
               rel="noopener noreferrer"
@@ -168,7 +168,7 @@ function Integritetspolicy() {
 
         <p className="mt-14 text-sm text-muted-foreground">
           Har du frågor?{" "}
-          <Link to="/kontakt" className="font-bold text-brand underline">
+          <Link to="/kontakt" className="font-semibold text-brand underline">
             Kontakta oss
           </Link>
           .

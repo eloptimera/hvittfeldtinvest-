@@ -2,13 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mark, PageHero } from "@/components/Heading";
 import { sidhuvud } from "@/lib/seo";
 
-// Visas efter att bokningsformuläret skickats. Besök här = en bokning i statistiken.
+// Visas efter att kontaktformuläret skickats. Besök här = en förfrågan i statistiken.
 // Sidan ska inte synas i sökresultat och står inte i sitemap.xml.
 export const Route = createFileRoute("/tack")({
   head: () => {
     const h = sidhuvud({
-      titel: "Tack för er förfrågan",
-      beskrivning: "Vi har fått er förfrågan och hör av oss för att boka en tid.",
+      titel: "Tack för ditt meddelande",
+      beskrivning: "Meddelandet har kommit fram. Jag återkommer för att boka en tid.",
       sokvag: "/tack",
     });
     return { ...h, meta: [...h.meta, { name: "robots", content: "noindex" }] };
@@ -22,16 +22,16 @@ function Tack() {
       eyebrow="Tack"
       title={
         <>
-          Tack – vi <Mark>hör av oss</Mark>
+          Tack – jag <Mark>återkommer</Mark>
         </>
       }
-      intro="Vi har fått er förfrågan och hör av oss inom en arbetsdag för att boka en tid för den kostnadsfria genomgången."
+      intro="Ditt meddelande har kommit fram. Jag läser det och hör av mig för att boka en tid för ett första samtal."
     >
       <Link to="/" className="btn-base btn-dark">
         Till startsidan
       </Link>
-      <Link to="/tjanster" className="btn-base btn-outline">
-        Läs om våra tjänster
+      <Link to="/erfarenhet" className="btn-base btn-outline">
+        Erfarenhet och meriter
       </Link>
     </PageHero>
   );

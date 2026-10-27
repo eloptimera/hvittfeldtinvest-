@@ -54,7 +54,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
           Sidan kunde inte laddas
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Något gick fel hos oss. Prova att ladda om sidan eller gå till startsidan.
+          Något gick fel. Prova att ladda om sidan eller gå till startsidan.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: FORETAG.namn },
       { name: "description", content: FORETAG.beskrivning },
       { property: "og:site_name", content: FORETAG.namn },
-      { name: "theme-color", content: "#ebeae6" },
+      { name: "theme-color", content: "#f5f2ec" },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "sv_SE" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -102,10 +102,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      // Ikoner: .ico med "Tab" i 16 (ritad pixel för pixel), 32 och 48 px – webbläsaren väljer
-      // storlek efter skärmen. Ingen SVG-favicon: den skulle vinna och bli suddig i 16 px.
-      // 96 px för Google (kräver en multipel av 48 px), apple-touch-icon för hemskärmen och
-      // manifestet för Android.
+      // Ikoner: monogrammet "H" i 16, 32 och 48 px (.ico), 96 px för Google (kräver en multipel
+      // av 48 px), apple-touch-icon för hemskärmen och manifestet för Android.
       { rel: "icon", href: "/favicon.ico", sizes: "16x16 32x32 48x48" },
       { rel: "icon", href: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },

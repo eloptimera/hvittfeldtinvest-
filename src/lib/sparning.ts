@@ -1,8 +1,8 @@
 // Händelser till Vercel Analytics (cookiefri, ingen personuppgift skickas).
 //
-// Själva konverteringen – en skickad bokning – räknas som besök på /tack. Klick på
-// bokningsknapparna skickas som händelsen "boka_klick" med vilken sida och vilken knapp, så
-// att vi ser vilka knappar som leder till bokningar. Egna händelser visas i Vercel först på
+// Själva konverteringen – ett skickat kontaktformulär – räknas som besök på /tack. Klick på
+// knapparna för att boka samtal skickas som händelsen "boka_klick" med vilken sida och vilken knapp, så
+// att vi ser vilka knappar som leder till kontakt. Egna händelser visas i Vercel först på
 // Pro-planen; på Hobby ignoreras de utan att något går sönder.
 //
 // Skicka aldrig namn, e-post, telefon eller fritext från formulär hit.
@@ -23,21 +23,9 @@ export function bokaKlick(sida: string, plats: string) {
   skicka("boka_klick", { sida, plats });
 }
 
-/** En skickad bokning och vilka tjänster den gällde – aldrig vad besökaren skrev. */
-export function bokningSkickad(tjanster: readonly string[]) {
-  skicka("bokning_skickad", {
-    tjanster: tjanster.join(",") || "ingen vald",
-    antal: tjanster.length,
-  });
-}
-
-/** Vilken tjänst besökaren fällde ut under "Det här krävs för att lyckas digitalt". */
-export function tjanstOppnad(tjanst: string) {
-  skicka("tjanst_oppnad", { tjanst });
-}
-
-export function projektKlick(projekt: string) {
-  skicka("projekt_klick", { projekt });
+/** Ett skickat kontaktformulär och vilken tjänst det gällde – aldrig vad besökaren skrev. */
+export function kontaktSkickad(arende: string) {
+  skicka("kontakt_skickad", { arende: arende || "ej angivet" });
 }
 
 export function mejlKlick(sida: string) {

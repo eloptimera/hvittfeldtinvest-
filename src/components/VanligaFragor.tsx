@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import type { Fraga } from "@/lib/priser";
+import type { Fraga } from "@/lib/innehall";
 
 /**
  * Vanliga frågor som inbyggda <details>-element: svaren finns i HTML:en från start, så
@@ -12,13 +12,13 @@ export function VanligaFragor({ fragor }: { fragor: readonly Fraga[] }) {
       {fragor.map((f) => (
         <details
           key={f.fraga}
-          className="group rounded-[1.5rem] border-2 border-line bg-white/80 open:border-ink/80 open:bg-white"
+          className="group rounded-[1rem] border border-line bg-paper open:border-ink/50"
         >
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 sm:px-8 [&::-webkit-details-marker]:hidden">
-            <h3 className="font-sans text-lg leading-snug font-bold tracking-normal text-ink">
+            <h3 className="font-sans text-lg leading-snug font-semibold tracking-normal text-ink">
               {f.fraga}
             </h3>
-            <span className="grid size-9 shrink-0 place-items-center rounded-full border-2 border-ink text-ink transition-transform duration-300 group-open:rotate-45 group-open:bg-ink group-open:text-white">
+            <span className="grid size-9 shrink-0 place-items-center rounded-full border border-ink text-ink transition-transform duration-300 group-open:rotate-45 group-open:bg-ink group-open:text-white">
               <Plus className="size-4" aria-hidden="true" />
             </span>
           </summary>

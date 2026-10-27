@@ -10,50 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as GeoOptimeringRouteImport } from './routes/geo-optimering'
-import { Route as HemsidaForetagRouteImport } from './routes/hemsida-foretag'
-import { Route as HemsidaPrisRouteImport } from './routes/hemsida-pris'
+import { Route as ErfarenhetRouteImport } from './routes/erfarenhet'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
-import { Route as LokalSeoRouteImport } from './routes/lokal-seo'
-import { Route as MetaAdsByraRouteImport } from './routes/meta-ads-byra'
-import { Route as ModerniseraHemsidaRouteImport } from './routes/modernisera-hemsida'
-import { Route as OffertRouteImport } from './routes/offert'
-import { Route as OmOssRouteImport } from './routes/om-oss'
-import { Route as PriserRouteImport } from './routes/priser'
+import { Route as OmMigRouteImport } from './routes/om-mig'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
-import { Route as SeoByraRouteImport } from './routes/seo-byra'
-import { Route as SeoSmaforetagRouteImport } from './routes/seo-smaforetag'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as SokmotoroptimeringRouteImport } from './routes/sokmotoroptimering'
 import { Route as TackRouteImport } from './routes/tack'
-import { Route as VillkorRouteImport } from './routes/villkor'
-import { Route as WebbyraRouteImport } from './routes/webbyra'
-import { Route as WebbyraGoteborgRouteImport } from './routes/webbyra-goteborg'
-import { Route as GuiderIndexRouteImport } from './routes/guider.index'
-import { Route as GuiderSlugRouteImport } from './routes/guider.$slug'
-import { Route as TjansterIndexRouteImport } from './routes/tjanster.index'
-import { Route as TjansterSlugRouteImport } from './routes/tjanster.$slug'
+import { Route as TjansterRouteImport } from './routes/tjanster'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GeoOptimeringRoute = GeoOptimeringRouteImport.update({
-  id: '/geo-optimering',
-  path: '/geo-optimering',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HemsidaForetagRoute = HemsidaForetagRouteImport.update({
-  id: '/hemsida-foretag',
-  path: '/hemsida-foretag',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HemsidaPrisRoute = HemsidaPrisRouteImport.update({
-  id: '/hemsida-pris',
-  path: '/hemsida-pris',
+const ErfarenhetRoute = ErfarenhetRouteImport.update({
+  id: '/erfarenhet',
+  path: '/erfarenhet',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IntegritetspolicyRoute = IntegritetspolicyRouteImport.update({
@@ -71,34 +45,9 @@ const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
   path: '/llms.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LokalSeoRoute = LokalSeoRouteImport.update({
-  id: '/lokal-seo',
-  path: '/lokal-seo',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MetaAdsByraRoute = MetaAdsByraRouteImport.update({
-  id: '/meta-ads-byra',
-  path: '/meta-ads-byra',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ModerniseraHemsidaRoute = ModerniseraHemsidaRouteImport.update({
-  id: '/modernisera-hemsida',
-  path: '/modernisera-hemsida',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OffertRoute = OffertRouteImport.update({
-  id: '/offert',
-  path: '/offert',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OmOssRoute = OmOssRouteImport.update({
-  id: '/om-oss',
-  path: '/om-oss',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PriserRoute = PriserRouteImport.update({
-  id: '/priser',
-  path: '/priser',
+const OmMigRoute = OmMigRouteImport.update({
+  id: '/om-mig',
+  path: '/om-mig',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
@@ -106,24 +55,9 @@ const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SeoByraRoute = SeoByraRouteImport.update({
-  id: '/seo-byra',
-  path: '/seo-byra',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SeoSmaforetagRoute = SeoSmaforetagRouteImport.update({
-  id: '/seo-smaforetag',
-  path: '/seo-smaforetag',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SokmotoroptimeringRoute = SokmotoroptimeringRouteImport.update({
-  id: '/sokmotoroptimering',
-  path: '/sokmotoroptimering',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TackRoute = TackRouteImport.update({
@@ -131,241 +65,99 @@ const TackRoute = TackRouteImport.update({
   path: '/tack',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VillkorRoute = VillkorRouteImport.update({
-  id: '/villkor',
-  path: '/villkor',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WebbyraRoute = WebbyraRouteImport.update({
-  id: '/webbyra',
-  path: '/webbyra',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WebbyraGoteborgRoute = WebbyraGoteborgRouteImport.update({
-  id: '/webbyra-goteborg',
-  path: '/webbyra-goteborg',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GuiderIndexRoute = GuiderIndexRouteImport.update({
-  id: '/guider/',
-  path: '/guider/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GuiderSlugRoute = GuiderSlugRouteImport.update({
-  id: '/guider/$slug',
-  path: '/guider/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TjansterIndexRoute = TjansterIndexRouteImport.update({
-  id: '/tjanster/',
-  path: '/tjanster/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TjansterSlugRoute = TjansterSlugRouteImport.update({
-  id: '/tjanster/$slug',
-  path: '/tjanster/$slug',
+const TjansterRoute = TjansterRouteImport.update({
+  id: '/tjanster',
+  path: '/tjanster',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/geo-optimering': typeof GeoOptimeringRoute
-  '/hemsida-foretag': typeof HemsidaForetagRoute
-  '/hemsida-pris': typeof HemsidaPrisRoute
+  '/erfarenhet': typeof ErfarenhetRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
-  '/lokal-seo': typeof LokalSeoRoute
-  '/meta-ads-byra': typeof MetaAdsByraRoute
-  '/modernisera-hemsida': typeof ModerniseraHemsidaRoute
-  '/offert': typeof OffertRoute
-  '/om-oss': typeof OmOssRoute
-  '/priser': typeof PriserRoute
+  '/om-mig': typeof OmMigRoute
   '/robots.txt': typeof RobotsDottxtRoute
-  '/seo-byra': typeof SeoByraRoute
-  '/seo-smaforetag': typeof SeoSmaforetagRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/sokmotoroptimering': typeof SokmotoroptimeringRoute
   '/tack': typeof TackRoute
-  '/villkor': typeof VillkorRoute
-  '/webbyra': typeof WebbyraRoute
-  '/webbyra-goteborg': typeof WebbyraGoteborgRoute
-  '/guider/$slug': typeof GuiderSlugRoute
-  '/tjanster/$slug': typeof TjansterSlugRoute
-  '/guider/': typeof GuiderIndexRoute
-  '/tjanster/': typeof TjansterIndexRoute
+  '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/geo-optimering': typeof GeoOptimeringRoute
-  '/hemsida-foretag': typeof HemsidaForetagRoute
-  '/hemsida-pris': typeof HemsidaPrisRoute
+  '/erfarenhet': typeof ErfarenhetRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
-  '/lokal-seo': typeof LokalSeoRoute
-  '/meta-ads-byra': typeof MetaAdsByraRoute
-  '/modernisera-hemsida': typeof ModerniseraHemsidaRoute
-  '/offert': typeof OffertRoute
-  '/om-oss': typeof OmOssRoute
-  '/priser': typeof PriserRoute
+  '/om-mig': typeof OmMigRoute
   '/robots.txt': typeof RobotsDottxtRoute
-  '/seo-byra': typeof SeoByraRoute
-  '/seo-smaforetag': typeof SeoSmaforetagRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/sokmotoroptimering': typeof SokmotoroptimeringRoute
   '/tack': typeof TackRoute
-  '/villkor': typeof VillkorRoute
-  '/webbyra': typeof WebbyraRoute
-  '/webbyra-goteborg': typeof WebbyraGoteborgRoute
-  '/guider/$slug': typeof GuiderSlugRoute
-  '/tjanster/$slug': typeof TjansterSlugRoute
-  '/guider': typeof GuiderIndexRoute
-  '/tjanster': typeof TjansterIndexRoute
+  '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/geo-optimering': typeof GeoOptimeringRoute
-  '/hemsida-foretag': typeof HemsidaForetagRoute
-  '/hemsida-pris': typeof HemsidaPrisRoute
+  '/erfarenhet': typeof ErfarenhetRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
-  '/lokal-seo': typeof LokalSeoRoute
-  '/meta-ads-byra': typeof MetaAdsByraRoute
-  '/modernisera-hemsida': typeof ModerniseraHemsidaRoute
-  '/offert': typeof OffertRoute
-  '/om-oss': typeof OmOssRoute
-  '/priser': typeof PriserRoute
+  '/om-mig': typeof OmMigRoute
   '/robots.txt': typeof RobotsDottxtRoute
-  '/seo-byra': typeof SeoByraRoute
-  '/seo-smaforetag': typeof SeoSmaforetagRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/sokmotoroptimering': typeof SokmotoroptimeringRoute
   '/tack': typeof TackRoute
-  '/villkor': typeof VillkorRoute
-  '/webbyra': typeof WebbyraRoute
-  '/webbyra-goteborg': typeof WebbyraGoteborgRoute
-  '/guider/$slug': typeof GuiderSlugRoute
-  '/tjanster/$slug': typeof TjansterSlugRoute
-  '/guider/': typeof GuiderIndexRoute
-  '/tjanster/': typeof TjansterIndexRoute
+  '/tjanster': typeof TjansterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/geo-optimering'
-    | '/hemsida-foretag'
-    | '/hemsida-pris'
+    | '/erfarenhet'
     | '/integritetspolicy'
     | '/kontakt'
     | '/llms.txt'
-    | '/lokal-seo'
-    | '/meta-ads-byra'
-    | '/modernisera-hemsida'
-    | '/offert'
-    | '/om-oss'
-    | '/priser'
+    | '/om-mig'
     | '/robots.txt'
-    | '/seo-byra'
-    | '/seo-smaforetag'
     | '/sitemap.xml'
-    | '/sokmotoroptimering'
     | '/tack'
-    | '/villkor'
-    | '/webbyra'
-    | '/webbyra-goteborg'
-    | '/guider/$slug'
-    | '/tjanster/$slug'
-    | '/guider/'
-    | '/tjanster/'
+    | '/tjanster'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/geo-optimering'
-    | '/hemsida-foretag'
-    | '/hemsida-pris'
+    | '/erfarenhet'
     | '/integritetspolicy'
     | '/kontakt'
     | '/llms.txt'
-    | '/lokal-seo'
-    | '/meta-ads-byra'
-    | '/modernisera-hemsida'
-    | '/offert'
-    | '/om-oss'
-    | '/priser'
+    | '/om-mig'
     | '/robots.txt'
-    | '/seo-byra'
-    | '/seo-smaforetag'
     | '/sitemap.xml'
-    | '/sokmotoroptimering'
     | '/tack'
-    | '/villkor'
-    | '/webbyra'
-    | '/webbyra-goteborg'
-    | '/guider/$slug'
-    | '/tjanster/$slug'
-    | '/guider'
     | '/tjanster'
   id:
     | '__root__'
     | '/'
-    | '/geo-optimering'
-    | '/hemsida-foretag'
-    | '/hemsida-pris'
+    | '/erfarenhet'
     | '/integritetspolicy'
     | '/kontakt'
     | '/llms.txt'
-    | '/lokal-seo'
-    | '/meta-ads-byra'
-    | '/modernisera-hemsida'
-    | '/offert'
-    | '/om-oss'
-    | '/priser'
+    | '/om-mig'
     | '/robots.txt'
-    | '/seo-byra'
-    | '/seo-smaforetag'
     | '/sitemap.xml'
-    | '/sokmotoroptimering'
     | '/tack'
-    | '/villkor'
-    | '/webbyra'
-    | '/webbyra-goteborg'
-    | '/guider/$slug'
-    | '/tjanster/$slug'
-    | '/guider/'
-    | '/tjanster/'
+    | '/tjanster'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  GeoOptimeringRoute: typeof GeoOptimeringRoute
-  HemsidaForetagRoute: typeof HemsidaForetagRoute
-  HemsidaPrisRoute: typeof HemsidaPrisRoute
+  ErfarenhetRoute: typeof ErfarenhetRoute
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   KontaktRoute: typeof KontaktRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
-  LokalSeoRoute: typeof LokalSeoRoute
-  MetaAdsByraRoute: typeof MetaAdsByraRoute
-  ModerniseraHemsidaRoute: typeof ModerniseraHemsidaRoute
-  OffertRoute: typeof OffertRoute
-  OmOssRoute: typeof OmOssRoute
-  PriserRoute: typeof PriserRoute
+  OmMigRoute: typeof OmMigRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
-  SeoByraRoute: typeof SeoByraRoute
-  SeoSmaforetagRoute: typeof SeoSmaforetagRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  SokmotoroptimeringRoute: typeof SokmotoroptimeringRoute
   TackRoute: typeof TackRoute
-  VillkorRoute: typeof VillkorRoute
-  WebbyraRoute: typeof WebbyraRoute
-  WebbyraGoteborgRoute: typeof WebbyraGoteborgRoute
-  GuiderSlugRoute: typeof GuiderSlugRoute
-  TjansterSlugRoute: typeof TjansterSlugRoute
-  GuiderIndexRoute: typeof GuiderIndexRoute
-  TjansterIndexRoute: typeof TjansterIndexRoute
+  TjansterRoute: typeof TjansterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -377,25 +169,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/geo-optimering': {
-      id: '/geo-optimering'
-      path: '/geo-optimering'
-      fullPath: '/geo-optimering'
-      preLoaderRoute: typeof GeoOptimeringRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/hemsida-foretag': {
-      id: '/hemsida-foretag'
-      path: '/hemsida-foretag'
-      fullPath: '/hemsida-foretag'
-      preLoaderRoute: typeof HemsidaForetagRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/hemsida-pris': {
-      id: '/hemsida-pris'
-      path: '/hemsida-pris'
-      fullPath: '/hemsida-pris'
-      preLoaderRoute: typeof HemsidaPrisRouteImport
+    '/erfarenhet': {
+      id: '/erfarenhet'
+      path: '/erfarenhet'
+      fullPath: '/erfarenhet'
+      preLoaderRoute: typeof ErfarenhetRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/integritetspolicy': {
@@ -419,46 +197,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LlmsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lokal-seo': {
-      id: '/lokal-seo'
-      path: '/lokal-seo'
-      fullPath: '/lokal-seo'
-      preLoaderRoute: typeof LokalSeoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/meta-ads-byra': {
-      id: '/meta-ads-byra'
-      path: '/meta-ads-byra'
-      fullPath: '/meta-ads-byra'
-      preLoaderRoute: typeof MetaAdsByraRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/modernisera-hemsida': {
-      id: '/modernisera-hemsida'
-      path: '/modernisera-hemsida'
-      fullPath: '/modernisera-hemsida'
-      preLoaderRoute: typeof ModerniseraHemsidaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/offert': {
-      id: '/offert'
-      path: '/offert'
-      fullPath: '/offert'
-      preLoaderRoute: typeof OffertRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/om-oss': {
-      id: '/om-oss'
-      path: '/om-oss'
-      fullPath: '/om-oss'
-      preLoaderRoute: typeof OmOssRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/priser': {
-      id: '/priser'
-      path: '/priser'
-      fullPath: '/priser'
-      preLoaderRoute: typeof PriserRouteImport
+    '/om-mig': {
+      id: '/om-mig'
+      path: '/om-mig'
+      fullPath: '/om-mig'
+      preLoaderRoute: typeof OmMigRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/robots.txt': {
@@ -468,32 +211,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/seo-byra': {
-      id: '/seo-byra'
-      path: '/seo-byra'
-      fullPath: '/seo-byra'
-      preLoaderRoute: typeof SeoByraRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/seo-smaforetag': {
-      id: '/seo-smaforetag'
-      path: '/seo-smaforetag'
-      fullPath: '/seo-smaforetag'
-      preLoaderRoute: typeof SeoSmaforetagRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sokmotoroptimering': {
-      id: '/sokmotoroptimering'
-      path: '/sokmotoroptimering'
-      fullPath: '/sokmotoroptimering'
-      preLoaderRoute: typeof SokmotoroptimeringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tack': {
@@ -503,53 +225,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TackRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/villkor': {
-      id: '/villkor'
-      path: '/villkor'
-      fullPath: '/villkor'
-      preLoaderRoute: typeof VillkorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/webbyra': {
-      id: '/webbyra'
-      path: '/webbyra'
-      fullPath: '/webbyra'
-      preLoaderRoute: typeof WebbyraRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/webbyra-goteborg': {
-      id: '/webbyra-goteborg'
-      path: '/webbyra-goteborg'
-      fullPath: '/webbyra-goteborg'
-      preLoaderRoute: typeof WebbyraGoteborgRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/guider/': {
-      id: '/guider/'
-      path: '/guider'
-      fullPath: '/guider/'
-      preLoaderRoute: typeof GuiderIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/guider/$slug': {
-      id: '/guider/$slug'
-      path: '/guider/$slug'
-      fullPath: '/guider/$slug'
-      preLoaderRoute: typeof GuiderSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tjanster/': {
-      id: '/tjanster/'
+    '/tjanster': {
+      id: '/tjanster'
       path: '/tjanster'
-      fullPath: '/tjanster/'
-      preLoaderRoute: typeof TjansterIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tjanster/$slug': {
-      id: '/tjanster/$slug'
-      path: '/tjanster/$slug'
-      fullPath: '/tjanster/$slug'
-      preLoaderRoute: typeof TjansterSlugRouteImport
+      fullPath: '/tjanster'
+      preLoaderRoute: typeof TjansterRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -557,31 +237,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  GeoOptimeringRoute: GeoOptimeringRoute,
-  HemsidaForetagRoute: HemsidaForetagRoute,
-  HemsidaPrisRoute: HemsidaPrisRoute,
+  ErfarenhetRoute: ErfarenhetRoute,
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   KontaktRoute: KontaktRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
-  LokalSeoRoute: LokalSeoRoute,
-  MetaAdsByraRoute: MetaAdsByraRoute,
-  ModerniseraHemsidaRoute: ModerniseraHemsidaRoute,
-  OffertRoute: OffertRoute,
-  OmOssRoute: OmOssRoute,
-  PriserRoute: PriserRoute,
+  OmMigRoute: OmMigRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
-  SeoByraRoute: SeoByraRoute,
-  SeoSmaforetagRoute: SeoSmaforetagRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  SokmotoroptimeringRoute: SokmotoroptimeringRoute,
   TackRoute: TackRoute,
-  VillkorRoute: VillkorRoute,
-  WebbyraRoute: WebbyraRoute,
-  WebbyraGoteborgRoute: WebbyraGoteborgRoute,
-  GuiderSlugRoute: GuiderSlugRoute,
-  TjansterSlugRoute: TjansterSlugRoute,
-  GuiderIndexRoute: GuiderIndexRoute,
-  TjansterIndexRoute: TjansterIndexRoute,
+  TjansterRoute: TjansterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

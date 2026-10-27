@@ -1,4 +1,23 @@
-import { FORETAG } from "@/lib/foretag";
+import { BYRA, FORETAG } from "@/lib/foretag";
+
+/**
+ * Ordmärket: "Hvittfeldt" i Bodoni med "Invest" i små versaler och en tunn guldlinje.
+ * Ren text – syns skarpt i alla storlekar och följer textfärgen (ljus/mörk botten).
+ */
+export function Ordmarke({ ljus = false, className = "" }: { ljus?: boolean; className?: string }) {
+  return (
+    <span
+      className={`inline-flex items-center gap-3 ${ljus ? "text-white" : "text-ink"} ${className}`}
+    >
+      <span className="font-display text-[1.6rem] leading-none tracking-[-0.01em] sm:text-[1.8rem]">
+        Hvittfeldt
+      </span>
+      <span aria-hidden="true" className="h-6 w-px bg-gold" />
+      <span className="caps !text-[0.68rem] !tracking-[0.3em]">Invest</span>
+      <span className="sr-only"> – {FORETAG.person}</span>
+    </span>
+  );
+}
 
 /** "Marketing" i Inter Medium, omgjord till kontur så att inget typsnitt behöver laddas. */
 const MARKETING = {
@@ -7,24 +26,17 @@ const MARKETING = {
 };
 
 /**
- * Loggan: färgkortet med "Tab" (public/logo/tab-chip.svg) och ordet "Marketing".
- * Kortet har egen bakgrund och syns på både ljus och mörk botten; ordet följer textfärgen.
- * Båda delarna är lika höga (120 enheter), så de ligger rätt mot varandra i alla storlekar.
+ * TAB Marketings logga (färgkortet "Tab" + ordet "Marketing") som länk till byråns sajt.
+ * Visas längst ner på varje sida: sajten är byggd och förvaltas av TAB Marketing.
  */
-export function Logo({
-  ljus = false,
-  storlek = "normal",
-  className = "",
-}: {
-  ljus?: boolean;
-  /** normal = sidhuvudet, stor = sidfoten. */
-  storlek?: "normal" | "stor";
-  className?: string;
-}) {
-  const hojd = storlek === "stor" ? "h-11" : "h-8 sm:h-9";
+export function TabLogga({ className = "" }: { className?: string }) {
   return (
-    <span
-      className={`inline-flex items-center ${hojd} ${ljus ? "text-white" : "text-ink"} ${className}`}
+    <a
+      href={BYRA.url}
+      target="_blank"
+      rel="noopener"
+      aria-label={`${BYRA.namn} (öppnas i ny flik)`}
+      className={`inline-flex h-7 items-center rounded-sm text-white opacity-90 transition-opacity duration-200 hover:opacity-100 ${className}`}
     >
       <img
         src="/logo/tab-chip.svg"
@@ -43,51 +55,6 @@ export function Logo({
       >
         <path d={MARKETING.d} />
       </svg>
-      <span className="sr-only">{FORETAG.namn}</span>
-    </span>
-  );
-}
-
-/**
- * Kornig, suddig färgblob. Förrenderad till en bild (public/blob.webp) i stället för ett
- * levande SVG-filter – filtret räknades om varje gång innehållet runt omkring flyttade sig,
- * vilket gjorde t.ex. den utfällbara listan hackig. Rent dekorativ – döljs för skärmläsare.
- * Storlek och placering styrs med className (t.ex. absolute/relative + bredd).
- */
-export function Blob({ className = "" }: { className?: string }) {
-  return (
-    <div aria-hidden="true" className={`pointer-events-none aspect-[5/4] ${className}`}>
-      <div className="relative size-full">
-        <img
-          src="/blob.webp"
-          alt=""
-          width={1000}
-          height={800}
-          decoding="async"
-          draggable={false}
-          className="absolute top-[-30%] left-[-30%] h-[160%] w-[160%] max-w-none select-none"
-        />
-      </div>
-    </div>
-  );
-}
-
-/** Tunna linjer: en cirkel och två horisontella – korsar blobben och ordbilden. */
-export function Linjer({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 1000 400"
-      preserveAspectRatio="none"
-      className={`pointer-events-none ${className}`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.2"
-      vectorEffect="non-scaling-stroke"
-    >
-      <line x1="0" y1="62" x2="1000" y2="62" vectorEffect="non-scaling-stroke" />
-      <line x1="0" y1="338" x2="1000" y2="338" vectorEffect="non-scaling-stroke" />
-      <ellipse cx="650" cy="200" rx="290" ry="196" vectorEffect="non-scaling-stroke" />
-    </svg>
+    </a>
   );
 }

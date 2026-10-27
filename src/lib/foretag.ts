@@ -1,48 +1,62 @@
-// Enda källan till företagsuppgifter. Allt på sajten (sidfot, kontakt, integritetspolicy,
-// metadata, strukturerad data och llms.txt) läser härifrån.
+// Enda källan till företagsuppgifter. Allt på sajten (sidhuvud, sidfot, kontakt,
+// integritetspolicy, metadata, strukturerad data och llms.txt) läser härifrån.
 //
-// Fält med tomt värde visas inte på sajten förrän de fylls i.
-// Adressen är bolagets säte – inte en besöksadress. TAB träffar kunder digitalt, på telefon eller
-// hos kunden i Göteborgsområdet – skriv aldrig "besök oss" eller "vårt kontor". TODO(TAB): fyll i telefon när ni vill visa den.
+// Fält med tomt värde visas som en platshållare på kontaktsidan och utelämnas i metadata och
+// strukturerad data tills de fylls i. Sök efter TODO(Hvittfeldt) för det som ska fyllas i.
 export const FORETAG: {
   /** Varumärket som syns på sajten. */
   namn: string;
-  /** Kort form – "Varför TAB", "Om TAB" m.m. */
-  kortnamn: string;
+  /** Konsulten – används i rubriker, profil och strukturerad data (Person). */
+  person: string;
+  /** Det officiella förnamnet, för strukturerad data. */
+  personFullstandigt: string;
+  titel: string;
   /** Bolaget som driver verksamheten (personuppgiftsansvarig, fakturerar). */
   juridisktNamn: string;
-  /** En mening om vad företaget gör – används i metadata, strukturerad data och llms.txt. */
+  /** En mening om vad bolaget gör – används i metadata, strukturerad data och llms.txt. */
   beskrivning: string;
-  /** Säte. Används bara i adressen och den strukturerade datan – inte i rubriker eller texter. */
+  /** Region där uppdragen oftast finns. Används i texter och strukturerad data. */
+  region: string;
   ort: string;
   orgnr: string;
-  momsnr: string;
   gata: string;
   postnummer: string;
-  adress: string;
   telefon: string;
   telefonLank: string;
   epost: string;
-  oppettider: readonly { dagar: string; tid: string }[];
-  personer: readonly { namn: string; roll: string }[];
+  linkedin: string;
 } = {
-  namn: "TAB Marketing",
-  kortnamn: "TAB",
-  juridisktNamn: "Treatly AB",
+  namn: "Hvittfeldt Invest",
+  person: "Ankie Hvittfeldt",
+  personFullstandigt: "Ann-Christine Hvittfeldt",
+  titel: "Professionell styrelseledamot och styrelseordförande",
+  juridisktNamn: "Hvittfeldt Invest AB",
   beskrivning:
-    "Marknadsföringsbyrå som tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger och förbättrar hemsidor åt företag i hela Sverige – till fasta priser.",
-  ort: "Göteborg",
-  orgnr: "559582-8046",
-  momsnr: "SE559582804601",
-  gata: "Svenslyckegatan 16",
-  postnummer: "416 56",
-  adress: "Svenslyckegatan 16, 416 56 Göteborg",
+    "Styrelseuppdrag, styrelseutvärdering och rådgivning kring ägarstyrning för ägarledda, statligt ägda och noterade bolag – med Ankie Hvittfeldt, professionell styrelseledamot och ordförande med mer än 15 års erfarenhet.",
+  region: "Västsverige",
+  // TODO(Hvittfeldt): fyll i ort, gatuadress, postnummer, org.nr, telefon och e-post.
+  ort: "",
+  orgnr: "",
+  gata: "",
+  postnummer: "",
   telefon: "",
   telefonLank: "",
-  epost: "edvin@treatlymarketing.se",
-  oppettider: [],
-  personer: [],
+  epost: "",
+  linkedin: "https://www.linkedin.com/in/ankiehvittfeldt/",
 };
+
+/** Det som visas när ett fält ovan inte är ifyllt ännu. */
+export const PLATSHALLARE = {
+  epost: "[E-postadress]",
+  telefon: "[Telefonnummer]",
+  adress: "[Gatuadress, postnummer och ort]",
+} as const;
+
+/** Webbyrån som byggt och förvaltar sajten – loggan längst ner på varje sida länkar hit. */
+export const BYRA = {
+  namn: "TAB Marketing",
+  url: "https://www.treatlymarketing.se",
+} as const;
 
 declare const __SAJT_URL__: string;
 declare const __VERIFIERING__: { google: string; bing: string };
@@ -53,7 +67,13 @@ export const VERIFIERING = __VERIFIERING__;
 /** Sajtens publika adress utan avslutande snedstreck, t.ex. https://exempel.se */
 export const SAJT_URL: string = __SAJT_URL__;
 
-/** Gör en sökväg (/priser) till en absolut adress (https://…/priser). */
+/** Gör en sökväg (/tjanster) till en absolut adress (https://…/tjanster). */
 export function absolut(sokvag: string): string {
   return `${SAJT_URL}${sokvag === "/" ? "/" : sokvag}`;
+}
+
+/** Hel adress på en rad, eller tom sträng om något saknas. */
+export function adressRad(): string {
+  if (!FORETAG.gata) return "";
+  return `${FORETAG.gata}, ${[FORETAG.postnummer, FORETAG.ort].filter(Boolean).join(" ")}`;
 }
