@@ -51,7 +51,8 @@ utbildningar/certifieringar.
 - `public/ankie-hvittfeldt.webp` (800 px) och `-480.webp` – porträttet på startsidan och profilen.
 - `public/hero-bred.webp` och `-1600.webp` – startsidans hero i full bredd (väggen förlängd åt sidorna).
 - `public/og.jpg` – delningsbild (1200 × 630).
-- `favicon.ico`, `favicon-96x96.png`, `apple-touch-icon.png`, `icon-*.png`, `logo.png` – monogrammet "H".
+- `logo/hvittfeldt.png` – loggan (stående, marinblå, transparent). `logo/hvittfeldt-liggande.webp` – liggande variant i sidhuvudet, används som mask så att den tar textfärgen.
+- `favicon.ico`, `favicon-96x96.png`, `apple-touch-icon.png`, `icon-*.png` – H:et ur loggan på elfenben. `logo.png` – hela loggan för strukturerad data.
 - `public/logo/tab-chip.svg` – TAB Marketings logga i sidfoten, länkar till treatlymarketing.se.
 
 ## Domän
