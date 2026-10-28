@@ -103,13 +103,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "font/woff2",
         crossOrigin: "anonymous",
       },
+      // Loggan i sidhuvudet syns direkt – hämta den tidigt.
+      { rel: "preload", href: "/logo/hvittfeldt-liggande.webp", as: "image", type: "image/webp" },
       { rel: "preload", href: dmSansUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: appCss,
       },
-      // Ikoner: monogrammet "H" i 16, 32 och 48 px (.ico), 96 px för Google (kräver en multipel
-      // av 48 px), apple-touch-icon för hemskärmen och manifestet för Android.
+      // Ikoner: H:et ur loggan på elfenben i 16, 32 och 48 px (.ico), 96 px för Google (kräver en
+      // multipel av 48 px), apple-touch-icon för hemskärmen och manifestet för Android.
       { rel: "icon", href: "/favicon.ico", sizes: "16x16 32x32 48x48" },
       { rel: "icon", href: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },

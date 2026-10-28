@@ -1,11 +1,29 @@
 import { BYRA, FORETAG } from "@/lib/foretag";
 
-/** Ordmärket i sidhuvudet: bolagsnamnet i Cormorant, följer textfärgen. */
+/**
+ * Loggan i sidhuvudet: H-monogrammet med "Hvittfeldt Invest AB" bredvid (liggande variant av
+ * den stående loggan i public/logo/hvittfeldt.png). Bilden används som mask, så loggan tar
+ * textfärgen – mörk på ljus botten, vit över hero-bilden och på den svarta listen.
+ */
 export function Ordmarke({ className = "" }: { className?: string }) {
   return (
-    <span className={`font-display text-[1.5rem] leading-none tracking-[0.01em] ${className}`}>
-      Hvittfeldt Invest
-      <span className="sr-only"> – {FORETAG.person}</span>
+    <span className={`inline-flex items-center ${className}`}>
+      <span
+        aria-hidden="true"
+        className="block h-9 bg-current sm:h-11"
+        style={{
+          aspectRatio: "665 / 120",
+          maskImage: "url(/logo/hvittfeldt-liggande.webp)",
+          maskSize: "contain",
+          maskRepeat: "no-repeat",
+          WebkitMaskImage: "url(/logo/hvittfeldt-liggande.webp)",
+          WebkitMaskSize: "contain",
+          WebkitMaskRepeat: "no-repeat",
+        }}
+      />
+      <span className="sr-only">
+        {FORETAG.juridisktNamn} – {FORETAG.person}
+      </span>
     </span>
   );
 }
