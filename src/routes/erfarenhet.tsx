@@ -93,15 +93,20 @@ function Erfarenhet() {
       })}
 
       <Avsnitt rubrik="Exempel" id="exempel">
-        <dl className="grid gap-x-12 gap-y-10 md:grid-cols-2">
+        <dl className="grid gap-x-10 gap-y-10 md:grid-cols-3">
           {VARDESKAPANDE.map((v, i) => (
             <Tona
               key={v.titel}
               fordrojning={(i % 2) * 80}
-              className="border-l-2 border-rosa-ljus pl-6"
+              // Längre exempel får hela bredden så att spalterna inte blir ojämna.
+              className={`border-l-2 border-rosa-ljus pl-6 ${v.stycken.length > 1 ? "md:col-span-3" : ""}`}
             >
-              <dt className="font-display text-[1.6rem] leading-tight">{v.titel}</dt>
-              <dd className="mt-2 text-muted-foreground">{v.text}</dd>
+              <dt className="max-w-3xl font-display text-[1.6rem] leading-tight">{v.titel}</dt>
+              <dd className="mt-2 max-w-3xl space-y-3 text-muted-foreground">
+                {v.stycken.map((t) => (
+                  <p key={t}>{t}</p>
+                ))}
+              </dd>
             </Tona>
           ))}
         </dl>
@@ -110,15 +115,10 @@ function Erfarenhet() {
       <Avsnitt rubrik="Operativ bakgrund" id="operativt">
         <ul className="divide-y divide-line border-y border-line">
           {OPERATIVT.map((o) => (
-            <li
-              key={o.organisation}
-              className="grid gap-x-8 gap-y-1 py-5 sm:grid-cols-[minmax(0,1fr)_12rem]"
-            >
-              <div>
-                <span className="font-display text-[1.6rem] leading-tight">{o.organisation}</span>
-                <p className="mt-1 text-muted-foreground">{o.text}</p>
-              </div>
-              <span className="text-sm text-rosa sm:pt-2 sm:text-right">{o.omrade}</span>
+            <li key={o.organisation} className="py-5">
+              <span className="font-display text-[1.6rem] leading-tight">{o.organisation}</span>
+              <p className="mt-1 text-sm font-medium text-rosa">{o.titel}</p>
+              <p className="mt-1 text-muted-foreground">{o.text}</p>
             </li>
           ))}
         </ul>

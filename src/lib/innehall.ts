@@ -1,11 +1,8 @@
-// Allt sakinnehåll på sajten: tjänster, kompetenser, uppdrag, meriter och vanliga frågor.
+// Allt sakinnehåll på sajten: tjänster, kompetenser, uppdrag och meriter.
 // Sidorna, den strukturerade datan och llms.txt läser härifrån – ändra här, inte i sidorna.
 //
-// Källor för meriterna (hämtade 2026-10-27): Västsvenska Handelskammaren (samtalsledare),
-// Hippoly (intervju 2018), Nilörngruppens valberedningsförslag (2022) och Everdrones
-// pressmeddelande om ny styrelse (januari 2026). LinkedIn går inte att läsa automatiskt.
-// TODO(Hvittfeldt): stäm av listan mot LinkedIn – vilka uppdrag är aktuella i dag, årtal,
-// befattningar i de operativa rollerna och eventuella utbildningar/certifieringar.
+// Presentation, operativ bakgrund, certifiering och uppdragslista är från kunden (oktober 2026).
+// TODO(Hvittfeldt): stäm av uppdragslistan när uppdrag tillkommer eller avslutas.
 
 export type Tjanst = {
   slug: string;
@@ -77,7 +74,7 @@ export const KOMPETENSER = [
   },
   {
     titel: "Ägarstyrning",
-    text: "Erfarenhet av ägarledda, statligt ägda och noterade bolag – och av ägarskiften.",
+    text: "Erfarenhet av ägarledda, medarbetarägda, statligt ägda och noterade bolag – och av ägarskiften.",
   },
   {
     titel: "Ekonomi och uppföljning",
@@ -90,19 +87,21 @@ export const BRANSCHER = [
   "Flyg och drönarteknik",
   "Industri och tillverkning",
   "Installation och teknikkonsulting",
-  "Detaljhandel och mode",
-  "Utbildning",
+  "Detaljhandel",
+  "Säkerhetsprodukter",
   "Hälsa och ortopedteknik",
 ] as const;
 
 export const UTBILDNING = [
+  {
+    titel: "Certifierad styrelseledamot",
+    text: "Certifierad genom Västsvenska Handelskammaren.",
+  },
   { titel: "Ekonomutbildning", text: "Grunden i ekonomi, före den operativa karriären." },
   {
     titel: "Styrelsekraft, 2009",
     text: "Deltog i det första programmet som Styrelsekraft genomförde – starten på karriären som professionell styrelseledamot.",
   },
-  // TODO(Hvittfeldt): lägg till fler utbildningar och certifieringar (t.ex. StyrelseAkademien)
-  // när de är bekräftade. Skriv bara in det som stämmer.
 ] as const;
 
 export const UPPDRAG_I_NARINGSLIVET = [
@@ -110,24 +109,28 @@ export const UPPDRAG_I_NARINGSLIVET = [
   "Regionansvarig för Styrelsepoolen Väst",
 ] as const;
 
-export type Befattning = { organisation: string; omrade: string; text: string };
+export type Befattning = {
+  organisation: string;
+  titel: string;
+  text: string;
+};
 
-/** Operativ bakgrund. TODO(Hvittfeldt): lägg till titel och årtal per roll. */
+/** Operativ bakgrund – ledande befattningar före styrelsearbetet. */
 export const OPERATIVT: readonly Befattning[] = [
   {
-    organisation: "Volvo",
-    omrade: "Internationell fordonsindustri",
-    text: "Logistik och transport i en global tillverkningsverksamhet.",
+    organisation: "DFDS Logistics Sweden",
+    titel: "Business Development Director",
+    text: "Medlem i företagsledningen för DFDS A/S svenska logistikverksamhet. Omsättning 2 miljarder kronor.",
   },
   {
-    organisation: "Speedcargo AB",
-    omrade: "Transport och logistik",
-    text: "Operativt ansvar i en transport- och logistikverksamhet.",
+    organisation: "Hemtex AB",
+    titel: "IT & Logistics Director",
+    text: "Ansvar för IT och logistik i en rikstäckande detaljhandelskedja. Omsättning 1,5 miljarder kronor.",
   },
   {
-    organisation: "Hemtex",
-    omrade: "Detaljhandel",
-    text: "Operativ verksamhet i en rikstäckande detaljhandelskedja.",
+    organisation: "Volvo Transport AB",
+    titel: "Director of Material Sourcing, Traffic & Dispatch",
+    text: "Eget kommersiellt ansvar för 1 miljard kronor.",
   },
 ];
 
@@ -273,7 +276,7 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
     roll: "Ledamot",
     typ: "Statligt ägt",
     status: "tidigare",
-    not: "Statligt ägt godstransportbolag på järnväg.",
+    not: "Statligt ägt godstransportbolag på järnväg. Åtta år i styrelsen.",
   },
   {
     bolag: "Integra Engineering AB",
@@ -366,24 +369,32 @@ export const STYRELSEUPPDRAG: readonly Styrelseuppdrag[] = [
   },
 ];
 
-/** Områden där förändring drivits – beskrivna utifrån belagda uppdrag, inga påhittade siffror.
- * TODO(Hvittfeldt): komplettera med mätbara resultat som Ankie godkänt (tillväxt, lönsamhet,
- * genomförda förvärv eller ägarskiften) – de väger tyngst för en valberedning. */
-export const VARDESKAPANDE = [
+/** Exempel på områden där styrelsearbetet har gjort skillnad. Varje text kan ha flera stycken. */
+export const VARDESKAPANDE: readonly { titel: string; stycken: readonly string[] }[] = [
   {
     titel: "Tillväxt och expansion",
-    text: "Ordförande i Everdrone sedan januari 2026, när en ny styrelse valdes inför bolagets fortsatta expansion i Europa.",
+    stycken: [
+      "Ordförande i Everdrone sedan januari 2026, när en ny styrelse valdes inför bolagets fortsatta expansion i Europa.",
+    ],
   },
   {
     titel: "Ägarskifte och försäljning",
-    text: "Styrelsearbete i teknikkonsultbolaget Integra Engineering, som förvärvades av Projektengagemang 2018.",
-  },
-  {
-    titel: "Samhällsviktig infrastruktur",
-    text: "Nio år i Luftfartsverkets styrelse och tidigare uppdrag i Green Cargo – styrning där säkerhet, ägarens uppdrag och lönsamhet ska balanseras.",
+    stycken: [
+      "Jag har erfarenhet av ägarskiften och företagsförsäljningar i bolag, där jag bidragit med strategiskt perspektiv, affärsmässighet och förmågan att driva processer framåt med fokus på värdeskapande.",
+    ],
   },
   {
     titel: "Från ägarlett till professionell styrelse",
-    text: "Ordförandeskap i ägarledda bolag i Västsverige, med strategi och omvärld först på dagordningen och tydlig uppföljning av besluten.",
+    stycken: [
+      "Ordförandeskap i ägarledda bolag, med strategi och omvärld först på dagordningen och tydlig uppföljning av besluten.",
+    ],
   },
-] as const;
+  {
+    titel: "Samhällsviktig infrastruktur och transportsektorns utveckling",
+    stycken: [
+      "Nio år i Luftfartsverkets styrelse, åtta år i Green Cargo och i dag verksam i statliga VTI – styrning där säkerhet, ägarens uppdrag och lönsamhet ska balanseras.",
+      "Erfarenheten av att leda och styra inom samhällsviktig infrastruktur är en av mina styrkor. Mitt fokus har alltid legat på den komplexa styrning som krävs där högsta säkerhet, ägarens samhällsuppdrag och kommersiell lönsamhet måste balanseras i perfekt harmoni.",
+      "Genom mitt engagemang i Statens väg- och transportforskningsinstitut (VTI) fördjupas denna expertis ytterligare. VTI spelar en helt avgörande roll för framtidens mobilitet genom att bidra med forskning och kunskap i världsklass. Att verka i gränssnittet mellan tillämpad forskning, statlig styrning och transportsektorns praktiska behov ger en solid grund för att driva hållbar utveckling och strategisk förnyelse inom svensk infrastruktur.",
+    ],
+  },
+];

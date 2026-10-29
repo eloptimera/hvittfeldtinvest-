@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
     sidhuvud({
       titel: `${FORETAG.person} – styrelseordförande och styrelseledamot`,
       beskrivning:
-        "Ankie Hvittfeldt är professionell styrelseledamot och ordförande med mer än 15 års erfarenhet från ägarledda, statligt ägda och noterade bolag.",
+        "Ankie Hvittfeldt är styrelseordförande och styrelseledamot med mer än 15 års erfarenhet och över 30 styrelseuppdrag i ägarledda, medarbetarägda, statligt ägda och noterade bolag.",
       sokvag: "/",
     }),
   component: Start,
@@ -77,8 +77,8 @@ function Start() {
           ))}
         </ul>
         <p className="mx-auto mt-10 max-w-2xl font-display text-[1.45rem] leading-snug sm:text-[1.8rem]">
-          Professionell styrelseledamot och ordförande i ägarledda, statligt ägda och noterade bolag
-          – i mer än 15 år.
+          Professionell styrelseledamot och ordförande i ägarledda, medarbetarägda, statligt ägda
+          och noterade bolag – i mer än 15 år.
         </p>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
           På LinkedIn finns min fullständiga profil.
@@ -121,15 +121,20 @@ function Start() {
       <Avsnitt rubrik="Om mig" id="om">
         <Tona className="grid gap-10 md:grid-cols-[1.3fr_1fr] md:gap-16">
           <div className="space-y-5 text-lg leading-relaxed">
+            <p className="font-display text-[1.6rem] leading-snug">
+              Söker ni en kraft i styrelsen som bidrar till att hålla fokus på de långsiktiga
+              frågorna och tillväxtagendan?
+            </p>
             <p>
-              Jag har en ekonomutbildning och en operativ bakgrund i den internationella
-              fordonsindustrin, med logistik och transport, och i detaljhandeln. Sedan 2009 är
-              styrelsearbete mitt yrke.
+              Jag är en trygg, modig och inspirerande ledare med ett tydligt fokus på möjligheter
+              och affärsmässighet. Jag har haft ledande befattningar, både internationellt och i
+              Sverige, med särskilt fokus på logistik, och har under de senaste 15 åren varit
+              verksam i styrelser, både som ordförande och ledamot.
             </p>
             <p className="text-muted-foreground">
-              I dag är jag ordförande och ledamot i bolag inom bland annat drönarteknik, belysning,
-              transportforskning, teknikkonsulting och vård, och driver {FORETAG.juridisktNamn} i
-              Göteborg.
+              Med mig får ni en engagerad styrelseordförande eller styrelseledamot med erfarenhet
+              från över 30 styrelseuppdrag – från mindre företag och medarbetarägda verksamheter
+              till börsnoterade och statligt ägda bolag.
             </p>
             <Link to="/om-mig" className="lank inline-flex items-center gap-2 text-base">
               Mer om mig
@@ -144,7 +149,7 @@ function Start() {
                 "nuvarande uppdrag",
               ],
               ["9", "år i Luftfartsverket"],
-              ["2009", "första styrelseprogrammet"],
+              ["30+", "styrelseuppdrag"],
             ].map(([v, t]) => (
               <div key={t} className="bg-background p-6">
                 <dt className="sr-only">{t}</dt>

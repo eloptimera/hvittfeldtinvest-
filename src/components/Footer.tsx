@@ -36,8 +36,8 @@ export function Footer() {
                 {FORETAG.person}
               </p>
               <p className="mt-4 max-w-sm text-white/65">
-                Styrelseordförande och styrelseledamot i ägarledda, statligt ägda och noterade
-                bolag.
+                Styrelseordförande och styrelseledamot i ägarledda, medarbetarägda, statligt ägda
+                och noterade bolag.
               </p>
               <a
                 href={FORETAG.linkedin}
