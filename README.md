@@ -42,9 +42,7 @@ uppdragssidan visas de i färg.
 | `src/components/Heading.tsx` | `PageHero` och `Avsnitt` – sidhuvud och den tvåspaltiga rytmen  |
 | `src/styles.css`             | Färger och typsnitt                                             |
 
-Sök efter `TODO(Hvittfeldt)` för det som ska fyllas i eller stämmas av:
-vilka styrelseuppdrag som är aktuella, titlar och årtal i de operativa rollerna och
-utbildningar/certifieringar.
+Sök efter `TODO(Hvittfeldt)` för det som ska stämmas av: vilka styrelseuppdrag som är aktuella.
 
 ## Bilder
 

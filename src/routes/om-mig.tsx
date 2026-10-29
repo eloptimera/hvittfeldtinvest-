@@ -9,7 +9,7 @@ export const Route = createFileRoute("/om-mig")({
     sidhuvud({
       titel: `Om ${FORETAG.person}`,
       beskrivning:
-        "Ankie Hvittfeldt är professionell styrelseledamot och ordförande med bakgrund i ekonomi, logistik, transport och detaljhandel.",
+        "Ankie Hvittfeldt är styrelseordförande och styrelseledamot med erfarenhet från över 30 styrelseuppdrag och ledande befattningar inom logistik, internationellt och i Sverige.",
       sokvag: "/om-mig",
       schema: [
         profilSchema(),
@@ -25,23 +25,41 @@ export const Route = createFileRoute("/om-mig")({
 function OmMig() {
   return (
     <>
-      <PageHero etikett="Om mig" title={FORETAG.person} intro={FORETAG.titel} />
+      <PageHero
+        etikett="Om mig"
+        title={FORETAG.person}
+        intro="Söker ni en kraft i styrelsen som bidrar till att hålla fokus på de långsiktiga frågorna och tillväxtagendan?"
+      />
 
       <Avsnitt rubrik="Bakgrund" id="bakgrund">
         <div className="max-w-2xl space-y-5 text-lg leading-relaxed">
-          <p>
-            Jag har arbetat professionellt med styrelsearbete i mer än 15 år – som ordförande och
-            ledamot i ägarledda, statligt ägda och noterade bolag, och i ett statligt affärsverk.
-            Jag driver {FORETAG.juridisktNamn} i Göteborg.
+          <p className="font-display text-[1.6rem] leading-snug">
+            Jag är en trygg, modig och inspirerande ledare med ett tydligt fokus på möjligheter och
+            affärsmässighet.
           </p>
           <p>
-            Grunden är en ekonomutbildning och en operativ karriär i den internationella
-            fordonsindustrin, med logistik och transport, och därefter i detaljhandeln.
+            Jag skapar värde genom min förmåga och erfarenhet av att utveckla strukturer och
+            strategier som gör det möjligt för organisationer och företag att ta tillvara sin fulla
+            potential. Att arbeta tillsammans med mig ger energi, engagemang och många kreativa
+            tankar. Jag är en offensiv, prestigelös och möjliggörande ledare.
           </p>
           <p>
-            2009 gick jag det första programmet som Styrelsekraft genomförde. Sedan dess är
-            styrelsearbetet mitt yrke.
+            Jag har haft ledande befattningar, både internationellt och i Sverige, med särskilt
+            fokus på logistik. Under de senaste 15 åren har jag varit verksam i styrelser, både som
+            ordförande och ledamot.
           </p>
+          <p>
+            Jag har ett starkt engagemang för företagande och entreprenörskap. Med mig får ni en
+            engagerad styrelseordförande eller styrelseledamot med erfarenhet från över 30
+            styrelseuppdrag. Jag har arbetat med allt från mindre företag och medarbetarägda
+            verksamheter till börsnoterade och statligt ägda bolag.
+          </p>
+          <p>
+            Att ha bott och arbetat utomlands har gett mig värdefull erfarenhet av internationellt
+            affärsarbete och en god förståelse för hur man bygger affärsrelationer över såväl
+            landsgränser som kulturella skillnader.
+          </p>
+          <p>Jag är certifierad styrelseledamot genom Västsvenska Handelskammaren.</p>
         </div>
       </Avsnitt>
 
@@ -60,7 +78,7 @@ function OmMig() {
         <p className="max-w-2xl text-lg leading-relaxed">{BRANSCHER.join(" · ")}</p>
       </Avsnitt>
 
-      <Avsnitt rubrik="Utbildning" id="utbildning">
+      <Avsnitt rubrik="Utbildning och certifiering" id="utbildning">
         <dl className="max-w-2xl space-y-5">
           {UTBILDNING.map((u) => (
             <div key={u.titel}>

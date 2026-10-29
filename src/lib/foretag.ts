@@ -32,7 +32,7 @@ export const FORETAG: {
   titel: "Professionell styrelseledamot och styrelseordförande",
   juridisktNamn: "Hvittfeldt Invest AB",
   beskrivning:
-    "Styrelseuppdrag, styrelseutvärdering och rådgivning kring ägarstyrning för ägarledda, statligt ägda och noterade bolag – med Ankie Hvittfeldt, professionell styrelseledamot och ordförande med mer än 15 års erfarenhet.",
+    "Styrelseuppdrag, styrelseutvärdering och rådgivning kring ägarstyrning – med Ankie Hvittfeldt, styrelseordförande och styrelseledamot med erfarenhet från över 30 styrelseuppdrag i ägarledda, medarbetarägda, statligt ägda och noterade bolag.",
   region: "Västsverige",
   // Org.nr och säte enligt Bolagsverket (via allabolag.se, 2026-10-27).
   ort: "Göteborg",
