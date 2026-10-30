@@ -34,12 +34,12 @@ function Start() {
         <picture>
           <source
             media="(min-width: 768px)"
-            srcSet="/hero-bred-1600.webp 1600w, /hero-bred.webp 2400w"
+            srcSet="/hero-bred-1600.webp 1600w, /hero-bred.webp 2400w, /hero-bred-3200.webp 3200w"
             sizes="100vw"
           />
           <img
             src={PORTRATT.src}
-            srcSet={`${PORTRATT.litenSrc} 480w, ${PORTRATT.src} 800w`}
+            srcSet={`${PORTRATT.litenSrc} 600w, ${PORTRATT.src} 1200w`}
             sizes="100vw"
             alt={PORTRATT.alt}
             width={PORTRATT.bredd}
