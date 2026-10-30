@@ -10,9 +10,9 @@ export const DELNINGSBILD = { src: "/og.jpg", bredd: 1200, hojd: 630 } as const;
 /** Porträttet – används på sajten och i den strukturerade datan. */
 export const PORTRATT = {
   src: "/ankie-hvittfeldt.webp",
-  litenSrc: "/ankie-hvittfeldt-480.webp",
-  bredd: 800,
-  hojd: 800,
+  litenSrc: "/ankie-hvittfeldt-600.webp",
+  bredd: 1200,
+  hojd: 1200,
   alt: "Ankie Hvittfeldt, professionell styrelseledamot och ordförande, framför en plommonfärgad vägg",
 } as const;
 
