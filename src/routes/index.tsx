@@ -28,26 +28,23 @@ const ROLLER = [
 function Start() {
   return (
     <>
-      {/* Hero: bilden täcker hela bredden och tonas ut nedåt i sidans yta. På mobil används
-          originalet (kvadratiskt), på större skärmar en bredare version där väggen förlängts. */}
+      {/* Hero: på mobil porträttet i full bredd. På större skärmar ligger porträttet i full
+          originalupplösning (1600 px) centrerat på en bakgrund av den förlängda rosa väggen –
+          porträttet skalas aldrig om i en ihopbyggd bild, så ansiktet förblir skarpt. Allt tonas
+          ut nedåt i sidans yta. */}
       <section aria-labelledby="namn" className="relative isolate">
-        <picture>
-          <source
-            media="(min-width: 768px)"
-            srcSet="/hero-bred-1600.webp 1600w, /hero-bred.webp 2400w, /hero-bred-3200.webp 3200w"
-            sizes="100vw"
-          />
+        <div className="relative md:h-[min(88svh,52rem)] md:bg-[url(/hero-vagg.webp)] md:bg-cover md:bg-center">
           <img
             src={PORTRATT.src}
-            srcSet={`${PORTRATT.litenSrc} 600w, ${PORTRATT.src} 1200w`}
-            sizes="100vw"
+            srcSet={`${PORTRATT.litenSrc} 600w, ${PORTRATT.src} 1200w, ${PORTRATT.storSrc} 1600w`}
+            sizes="(min-width: 768px) min(88svh, 52rem), 100vw"
             alt={PORTRATT.alt}
             width={PORTRATT.bredd}
             height={PORTRATT.hojd}
             fetchPriority="high"
-            className="block aspect-square w-full object-cover object-top md:aspect-auto md:h-[min(88svh,52rem)]"
+            className="block aspect-square w-full object-cover object-top md:absolute md:inset-y-0 md:left-1/2 md:h-full md:w-auto md:-translate-x-1/2 md:[mask-image:linear-gradient(to_right,transparent,#000_14%,#000_86%,transparent)]"
           />
-        </picture>
+        </div>
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-b from-transparent via-background/75 to-background"

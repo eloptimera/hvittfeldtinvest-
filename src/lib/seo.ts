@@ -11,6 +11,7 @@ export const DELNINGSBILD = { src: "/og.jpg", bredd: 1200, hojd: 630 } as const;
 export const PORTRATT = {
   src: "/ankie-hvittfeldt.webp",
   litenSrc: "/ankie-hvittfeldt-600.webp",
+  storSrc: "/ankie-hvittfeldt-1600.webp",
   bredd: 1200,
   hojd: 1200,
   alt: "Ankie Hvittfeldt, professionell styrelseledamot och ordförande, framför en plommonfärgad vägg",

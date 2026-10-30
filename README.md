@@ -46,8 +46,8 @@ Sök efter `TODO(Hvittfeldt)` för det som ska stämmas av: vilka styrelseuppdra
 
 ## Bilder
 
-- `public/ankie-hvittfeldt.webp` (1200 px) och `-600.webp` – porträttet (mobilens hero och strukturerad data).
-- `public/hero-bred.webp` (2400 px), `-1600.webp` och `-3200.webp` – startsidans hero i full bredd (väggen förlängd åt sidorna).
+- `public/ankie-hvittfeldt-1600.webp`, `ankie-hvittfeldt.webp` (1200 px) och `-600.webp` – porträttet. På dator visas det i originalupplösning centrerat i hero:n.
+- `public/hero-vagg.webp` – den rosa väggen förlängd över hela bredden, bakgrund bakom porträttet på dator.
 - `public/og.jpg` – delningsbild (1200 × 630).
 - `logo/hvittfeldt.png` – loggan (stående, marinblå, transparent). `logo/hvittfeldt-liggande.webp` – liggande variant i sidhuvudet, används som mask så att den tar textfärgen.
 - `favicon.ico`, `favicon-96x96.png`, `apple-touch-icon.png`, `icon-*.png` – H:et ur loggan på elfenben. `logo.png` – hela loggan för strukturerad data.
